@@ -21,7 +21,7 @@ mathviz/
 | Tool       | Minimum Version          |
 | ---------- | ------------------------ |
 | Node.js    | 20                       |
-| pnpm       | 9                        |
+| pnpm       | 10                       |
 | PostgreSQL | 16 (for API development) |
 
 ## Getting Started
@@ -84,3 +84,22 @@ pnpm --filter api db:migrate
 # Open Drizzle Studio (browser-based DB viewer)
 pnpm --filter api db:studio
 ```
+
+## Testing
+
+Tests are colocated with source files and use Vitest across all workspaces.
+
+```bash
+# Run all tests
+pnpm test
+
+# Run tests for a specific workspace
+pnpm --filter @mathviz/shared test
+pnpm --filter api test
+pnpm --filter web test
+```
+
+**Test coverage summary:**
+- `packages/shared` — 19 tests (schemas, constants, error codes)
+- `apps/api` — 40 tests (auth, users, leaderboard routers; gamification utils)
+- `apps/web` — 101 tests (i18n, auth forms, calculators, language switcher)

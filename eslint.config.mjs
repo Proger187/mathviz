@@ -18,7 +18,6 @@ export default tseslint.config(
     },
     settings: {
       'import/resolver': {
-        typescript: true,
         node: true,
       },
     },
@@ -31,8 +30,7 @@ export default tseslint.config(
           groups: [
             'builtin', // 1. node:fs, node:path
             'external', // 2. react, express, framer-motion
-            'internal', // 3. @mathviz/*
-            'absolute', // handled via pathGroups below (@/)
+            'internal', // 3. @mathviz/* and @/
             'parent', // ../foo
             'sibling', // ./foo
             'index', // ./
@@ -66,6 +64,8 @@ export default tseslint.config(
             '@mathviz/shared',
             // Next.js internals
             'next/**',
+            // drizzle-orm subpath imports
+            'drizzle-orm/**',
             // Absolutely fine to import deep from node_modules
             '*/node_modules/**',
           ],

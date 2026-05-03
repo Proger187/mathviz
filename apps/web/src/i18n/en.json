@@ -1,0 +1,172 @@
+{
+  "common": {
+    "appName": "MathViz",
+    "loading": "Loading...",
+    "error": "Something went wrong",
+    "retry": "Try again",
+    "back": "Back",
+    "next": "Next",
+    "close": "Close",
+    "save": "Save",
+    "cancel": "Cancel"
+  },
+  "nav": {
+    "home": "Home",
+    "calculators": "Calculators",
+    "dashboard": "Dashboard",
+    "leaderboard": "Leaderboard",
+    "login": "Log in",
+    "register": "Create account",
+    "logout": "Log out",
+    "openMenu": "Open navigation menu",
+    "closeMenu": "Close navigation menu"
+  },
+  "landing": {
+    "heroTitle": "See math work in front of you",
+    "heroSubtitle": "Interactive visual calculators for fractions, integers, multiplication, and division",
+    "primaryCta": "Start learning",
+    "secondaryCta": "Try a calculator",
+    "modesTitle": "Choose your calculator",
+    "modesSubtitle": "Each mode uses animation to make the concept visible",
+    "tryIt": "Try it",
+    "gamificationTitle": "Learn and earn as you go",
+    "xpTitle": "Earn XP",
+    "xpBody": "Answer questions correctly and quickly to earn experience points.",
+    "streakTitle": "Build streaks",
+    "streakBody": "Come back each day to keep your streak alive.",
+    "badgesTitle": "Unlock badges",
+    "badgesBody": "Reach milestones to earn badges shown on your profile.",
+    "ctaTitle": "Ready to track your progress?",
+    "ctaBody": "Create a free account to save your XP, streaks, and badge history.",
+    "ctaButton": "Create free account",
+    "guestPrompt": "Enjoying this? Track your progress — create a free account"
+  },
+  "auth": {
+    "email": "Email",
+    "password": "Password",
+    "username": "Username",
+    "loginTitle": "Welcome back",
+    "registerTitle": "Create your account",
+    "loginButton": "Log in",
+    "registerButton": "Create account",
+    "alreadyHaveAccount": "Already have an account?",
+    "noAccount": "Don't have an account?",
+    "loginLink": "Log in",
+    "registerLink": "Create one"
+  },
+  "dashboard": {
+    "title": "Dashboard",
+    "welcome": "Welcome, {username}!",
+    "levelLabel": "Level {level}",
+    "xpProgress": "{current} / {next} XP",
+    "streakLabel": "{count} day streak",
+    "badgesTitle": "Your badges",
+    "noBadgesYet": "No badges earned yet — complete a quiz to start!",
+    "recentActivity": "Recent activity",
+    "noRecentActivity": "No quizzes completed yet.",
+    "quickStart": "Quick start",
+    "score": "Score: {score}",
+    "xpEarned": "+{xp} XP"
+  },
+  "leaderboard": {
+    "title": "Weekly leaderboard",
+    "subtitle": "Top players by XP earned this week",
+    "rank": "Rank",
+    "player": "Player",
+    "weeklyXp": "Weekly XP",
+    "empty": "No scores yet this week — be the first!",
+    "you": "You"
+  },
+  "quiz": {
+    "start": "Start quiz",
+    "submit": "Submit answer",
+    "reveal": "Reveal answer",
+    "correct": "Correct!",
+    "incorrect": "Not quite",
+    "score": "Score",
+    "xpEarned": "XP earned",
+    "timeLeft": "{seconds}s left",
+    "question": "Question {current} of {total}",
+    "difficulty": {
+      "easy": "Easy",
+      "medium": "Medium",
+      "hard": "Hard"
+    },
+    "resultsTitle": "Quiz complete!",
+    "totalScore": "Total score: {score} / {total}",
+    "totalXp": "XP earned: {xp}",
+    "levelReached": "Level {level} reached!",
+    "newBadges": "New badges unlocked!",
+    "tryAgain": "Try again",
+    "guestPrompt": "Create an account to save your score and track progress",
+    "signUpToSave": "Sign up to save"
+  },
+  "calculator": {
+    "textSummary": "Show text summary",
+    "textSummaryHide": "Hide text summary",
+    "step": "Step {current} of {total}",
+    "previousStep": "Previous step",
+    "nextStep": "Next step",
+    "resetSteps": "Restart",
+    "numerator": "Numerator",
+    "denominator": "Denominator",
+    "calculate": "Calculate",
+    "stepNavLabel": "Step navigation",
+    "operation": "Operation"
+  },
+  "modes": {
+    "fractions": {
+      "label": "Pizza Fractions",
+      "description": "Add and subtract fractions using pizza slices",
+      "step0": "Here are your two fractions: {a}/{b} and {c}/{d}",
+      "step1": "These pizzas have different slice counts — let's fix that",
+      "step2": "Re-slicing both pizzas to {lcd} slices",
+      "step3": "Now both have {lcd} slices — ready to combine",
+      "step4": "Combined result: {n}/{d}"
+    },
+    "negative": {
+      "label": "Number Line",
+      "description": "Learn positive and negative jumps on a number line",
+      "step0": "Starting at {a} on the number line",
+      "step1": "We will move {direction} by {b} steps",
+      "step2": "Travelling {direction}...",
+      "step3": "Arrived at {result}"
+    },
+    "multiplication": {
+      "label": "Area Grid",
+      "description": "See multiplication as filling a rectangular area",
+      "step0": "Building a {a} by {b} grid",
+      "step1": "Filling row by row — {filled} of {total} squares",
+      "step2": "Grid complete: {a} × {b} = {result}"
+    },
+    "division": {
+      "label": "Fair Share",
+      "description": "Split a group of items equally into boxes",
+      "step0": "We have {total} items to share between {groups} groups",
+      "step1": "Distributing items one by one...",
+      "step2": "Each group has {quotient} items",
+      "step3": "{total} ÷ {groups} = {quotient}. Every item has a place!",
+      "step3Remainder": "{total} ÷ {groups} = {quotient} remainder {remainder}"
+    }
+  },
+  "errors": {
+    "AUTH_EMAIL_TAKEN": "This email address is already registered",
+    "AUTH_USERNAME_TAKEN": "This username is already taken",
+    "AUTH_INVALID_CREDENTIALS": "Incorrect email or password",
+    "AUTH_TOKEN_EXPIRED": "Your session has expired — please log in again",
+    "AUTH_TOKEN_INVALID": "Invalid session — please log in again",
+    "QUIZ_SESSION_NOT_FOUND": "Quiz session not found",
+    "QUIZ_ALREADY_COMPLETED": "This quiz session is already complete",
+    "VALIDATION_ERROR": "Please check your input and try again",
+    "NOT_FOUND": "Page not found",
+    "INTERNAL_ERROR": "An unexpected error occurred — please try again"
+  },
+  "validation": {
+    "required": "{field} is required",
+    "emailInvalid": "Please enter a valid email address",
+    "passwordTooShort": "Password must be at least 8 characters",
+    "usernameTooShort": "Username must be at least 3 characters",
+    "numberOutOfRange": "Please enter a number between {min} and {max}",
+    "divideByZero": "Cannot divide by zero"
+  }
+}
