@@ -74,6 +74,15 @@ Internal package (`@mathviz/shared`) imported by both apps. Contains Zod schemas
 
 ## Database Setup
 
+Create the database once (PostgreSQL must be running):
+
+```bash
+createdb -h localhost -U postgres mathviz
+# or: psql -h localhost -U postgres -c "CREATE DATABASE mathviz;"
+```
+
+If your password contains special URL characters (`$`, `@`, `#`, …), encode them in `DATABASE_URL` (e.g. `$` → `%24`).
+
 ```bash
 # Generate migration files from schema
 pnpm --filter api db:generate
@@ -100,6 +109,7 @@ pnpm --filter web test
 ```
 
 **Test coverage summary:**
+
 - `packages/shared` — 19 tests (schemas, constants, error codes)
 - `apps/api` — 40 tests (auth, users, leaderboard routers; gamification utils)
 - `apps/web` — 101 tests (i18n, auth forms, calculators, language switcher)
