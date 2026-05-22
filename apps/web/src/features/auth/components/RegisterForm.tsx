@@ -67,6 +67,7 @@ export function RegisterForm() {
         label={t('auth.email')}
         type="email"
         autoComplete="email"
+        placeholder={t('auth.emailPlaceholder')}
         value={email}
         onChange={(e) => setEmail(e.target.value)}
         required
@@ -76,6 +77,7 @@ export function RegisterForm() {
         label={t('auth.username')}
         type="text"
         autoComplete="username"
+        placeholder={t('auth.usernamePlaceholder')}
         value={username}
         onChange={(e) => setUsername(e.target.value)}
         required
@@ -85,11 +87,16 @@ export function RegisterForm() {
         label={t('auth.password')}
         type="password"
         autoComplete="new-password"
+        placeholder={t('auth.passwordPlaceholder')}
         value={password}
         onChange={(e) => setPassword(e.target.value)}
         required
       />
-      {error && <p className="text-sm text-red-600" role="alert">{error}</p>}
+      {error && (
+        <p className="text-sm text-red-600" role="alert">
+          {error}
+        </p>
+      )}
       <Button type="submit" isLoading={isLoading} className="w-full">
         {t('auth.registerButton')}
       </Button>

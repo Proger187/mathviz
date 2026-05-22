@@ -13,13 +13,33 @@
   "nav": {
     "home": "Башкы бет",
     "calculators": "Калькуляторлор",
-    "dashboard": "Профиль",
+    "quizzes": "Викториналар",
+    "dashboard": "Менин прогрессим",
     "leaderboard": "Рейтинг",
     "login": "Кирүү",
-    "register": "Аккаунт түзүү",
+    "register": "Катталуу",
     "logout": "Чыгуу",
-    "openMenu": "Навигация менюсун ачуу",
-    "closeMenu": "Навигация менюсун жабуу"
+    "menu": "Меню",
+    "openMenu": "Менюну ачуу",
+    "closeMenu": "Менюну жабуу",
+    "tagline": "Математика көрүнүктүү",
+    "language": "Тил",
+    "mainNavigation": "Негизги навигация",
+    "quickNavigation": "Тез навигация",
+    "sectionLearn": "Бөлүмдөр",
+    "sectionCalculators": "Визуалдык калькуляторлор",
+    "sectionPractice": "Викториналар",
+    "sectionAccount": "Аккаунтуң",
+    "homeHint": "Баштоо жана караш",
+    "leaderboardHint": "Бул жумада мыктылар",
+    "dashboardHint": "XP, серия, белгилер",
+    "quizItemHint": "Убакыт менен суроолор",
+    "myAccount": "Салам, {username}",
+    "languages": {
+      "en": "English",
+      "ru": "Русский",
+      "kg": "Кыргызча"
+    }
   },
   "landing": {
     "heroTitle": "Математиканын иштешин көр",
@@ -44,18 +64,24 @@
   "auth": {
     "email": "Электрондук почта",
     "password": "Сырсөз",
-    "username": "Колдонуучу аты",
+    "username": "Атың",
+    "emailPlaceholder": "you@school.kg",
+    "usernamePlaceholder": "Лакап атың",
+    "passwordPlaceholder": "Кеминде 8 символ",
     "loginTitle": "Кош келдиң",
-    "registerTitle": "Аккаунтуңду түзүү",
+    "loginSubtitle": "XP, серия жана белгилерди сактоо үчүн кир.",
+    "registerTitle": "Акысыз аккаунт",
+    "registerSubtitle": "Бир мүнөттө түзүлөт. Акы төлөнбөйт.",
     "loginButton": "Кирүү",
     "registerButton": "Аккаунт түзүү",
     "alreadyHaveAccount": "Аккаунт бар беле?",
-    "noAccount": "Аккаунт жокпу?",
+    "noAccount": "Биринчи жолу беле?",
     "loginLink": "Кирүү",
-    "registerLink": "Түзүү"
+    "registerLink": "Катталуу"
   },
   "dashboard": {
-    "title": "Профиль",
+    "title": "Менин прогрессим",
+    "subtitle": "Окуу жолуң",
     "welcome": "Кош келдиң, {username}!",
     "levelLabel": "{level} деңгээл",
     "xpProgress": "{current} / {next} XP",
@@ -78,6 +104,9 @@
     "you": "Сен"
   },
   "quiz": {
+    "pageSubtitle": "Тема жана кыйындыкты танда. Суроолорго жооп берип XP ал.",
+    "pickDifficulty": "Кыйындык деңгээли:",
+    "comingSoon": "Толук викторина жакында — азыр калькуляторлордо машык.",
     "start": "Викторинаны баштоо",
     "submit": "Жоопту жөнөтүү",
     "reveal": "Жоопту көрсөтүү",
@@ -112,20 +141,30 @@
     "denominator": "Бөлүүчү",
     "calculate": "Есептеү",
     "stepNavLabel": "Кадамдар бойлаб жүрүү",
-    "operation": "Операция"
+    "operation": "Амал",
+    "fractions": {
+      "first": "Бirinchi bölchök",
+      "second": "Ekinchi bölchök",
+      "add": "Koshuu",
+      "subtract": "Aluu",
+      "enterValues": "Eki bölchök kirgizip, amaldy tanda",
+      "visual": "Тегерек бөлүктөрдү көрсөтөт: белги — канча бөлүк, саны — канчасы боёлгон"
+    }
   },
   "modes": {
     "fractions": {
-      "label": "Пицца бөлчөктөрү",
-      "description": "Пицца кесимдерин колдонуп бөлчөктөрдү кош жана алып сал",
-      "step0": "Бул сенин эки бөлчөгүң: {a}/{b} жана {c}/{d}",
-      "step1": "Бул пиццалардын кесим саны ар башка — оңдоп алалы",
-      "step2": "Эки пиццаны да {lcd} кесимге кесүү",
-      "step3": "Эми экөө тең {lcd} кесим — бириктирүүгө даяр",
-      "step4": "Натыйжа: {n}/{d}"
+      "label": "Бөлчөктөр",
+      "shortHint": "Кадам-кадам кошуу жана алуу",
+      "description": "Бөлчөктөрдү тегерек модели менен кошуп жана алыңыз — адегенде бирдей бөлүктөр, анан бириктирүү",
+      "step0": "{a}/{b} жана {c}/{d} менен баштайбыз.",
+      "step1": "Бөлүктөр ар түрдүү ({b} жана {d}). Кошуу же алуу үчүн бирдей бөлүктөр керек.",
+      "step2": "Эки тегерек тең {lcd} бөлүккө бөлүнгөн.",
+      "step3": "Бирдей бөлүктөр — эми боёлгон аймактарды бириктирсе болот.",
+      "step4": "Жооп: {n}/{d}"
     },
     "negative": {
       "label": "Сан түзүмү",
+      "shortHint": "Түзүм боюнча секирүү",
       "description": "Сан түзүмүндөгү оң жана терс секирүүлөрдү үйрөнүү",
       "step0": "Сан түзүмүндө {a} дан баштоо",
       "step1": "{b} кадам {direction} жылабыз",
@@ -134,6 +173,7 @@
     },
     "multiplication": {
       "label": "Аянт тору",
+      "shortHint": "Торду толтуруу менен көбөйтүү",
       "description": "Көбөйтүүнү тик бурчтуктун аянтын толтуруу катары көрүү",
       "step0": "{a} га {b} тор куруу",
       "step1": "Катарма-катар толтуруу — {total} квадраттын {filled} бөлүгү",
@@ -141,6 +181,7 @@
     },
     "division": {
       "label": "Адилеттүү бөлүшүү",
+      "shortHint": "Тең бөлүштүрүү кадамдары",
       "description": "Заттар тобун кутуларга теңдей бөлүштүрүү",
       "step0": "{groups} топко бөлүштүрүү үчүн {total} зат бар",
       "step1": "Бирден бирден бөлүштүрүү...",

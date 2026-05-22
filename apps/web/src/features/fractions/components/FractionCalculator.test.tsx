@@ -8,8 +8,31 @@ import { I18nProvider } from '@/i18n/I18nProvider'
 // Framer-motion animations don't work in jsdom — stub it out
 vi.mock('framer-motion', () => ({
   motion: {
-    div: ({ children, ...props }: React.HTMLAttributes<HTMLDivElement> & { children?: React.ReactNode }) => <div {...props}>{children}</div>,
-    g: ({ children, ...props }: React.SVGAttributes<SVGGElement> & { children?: React.ReactNode }) => <g {...props}>{children}</g>,
+    div: ({
+      children,
+      ...props
+    }: React.HTMLAttributes<HTMLDivElement> & { children?: React.ReactNode }) => (
+      <div {...props}>{children}</div>
+    ),
+    path: ({
+      children,
+      ...props
+    }: React.SVGAttributes<SVGPathElement> & { children?: React.ReactNode }) => (
+      <path {...props}>{children}</path>
+    ),
+    circle: (props: React.SVGAttributes<SVGCircleElement>) => <circle {...props} />,
+    svg: ({
+      children,
+      ...props
+    }: React.SVGAttributes<SVGSVGElement> & { children?: React.ReactNode }) => (
+      <svg {...props}>{children}</svg>
+    ),
+    span: ({
+      children,
+      ...props
+    }: React.HTMLAttributes<HTMLSpanElement> & { children?: React.ReactNode }) => (
+      <span {...props}>{children}</span>
+    ),
   },
   AnimatePresence: ({ children }: { children: React.ReactNode }) => <>{children}</>,
   useAnimation: () => ({ start: vi.fn() }),

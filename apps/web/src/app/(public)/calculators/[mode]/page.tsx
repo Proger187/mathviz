@@ -5,8 +5,6 @@ import { notFound } from 'next/navigation'
 import { MODES } from '@mathviz/shared'
 import type { ModeId } from '@mathviz/shared'
 
-import { Footer } from '@/components/layout/Footer'
-import { Header } from '@/components/layout/Header'
 import { ROUTES } from '@/config/routes'
 import { CalculatorShell } from '@/features/calculators/components/CalculatorShell'
 import en from '@/i18n/en.json'
@@ -43,31 +41,23 @@ export default async function CalculatorPage({ params }: Props) {
 
   return (
     <>
-      <Header />
-      <main id="main-content" className="mx-auto max-w-3xl px-4 py-8">
-        <div className="mb-6">
-          <h1 className="text-2xl font-bold text-gray-900">
-            {MODES[modeId].icon} {t(`modes.${modeId}.label`)}
-          </h1>
-          <p className="mt-1 text-gray-500">{t(`modes.${modeId}.description`)}</p>
-        </div>
+      <div className="mb-4 flex justify-end sm:mb-6">
+        <Link
+          href={ROUTES.QUIZ(modeId)}
+          className="rounded-xl border border-indigo-200 bg-indigo-50 px-4 py-2.5 text-sm font-semibold text-indigo-700 hover:bg-indigo-100"
+        >
+          {t('quiz.start')} →
+        </Link>
+      </div>
 
-        <CalculatorShell modeId={modeId} />
+      <CalculatorShell modeId={modeId} />
 
-        {/* Soft guest prompt — not a blocking modal */}
-        <div className="mt-8 rounded-xl border border-indigo-100 bg-indigo-50 px-6 py-4 text-sm">
-          <p className="text-indigo-700">
-            {t('landing.guestPrompt')}{' '}
-            <Link
-              href={ROUTES.REGISTER}
-              className="font-semibold underline hover:text-indigo-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500"
-            >
-              {t('landing.primaryCta')}
-            </Link>
-          </p>
-        </div>
-      </main>
-      <Footer />
+      <div className="mt-8 rounded-2xl border border-indigo-100 bg-indigo-50/80 px-5 py-4 text-sm leading-relaxed text-indigo-900">
+        {t('landing.guestPrompt')}{' '}
+        <Link href={ROUTES.REGISTER} className="font-semibold underline hover:text-indigo-950">
+          {t('landing.primaryCta')}
+        </Link>
+      </div>
     </>
   )
 }

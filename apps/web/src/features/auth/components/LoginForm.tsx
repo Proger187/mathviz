@@ -56,6 +56,7 @@ export function LoginForm() {
         label={t('auth.email')}
         type="email"
         autoComplete="email"
+        placeholder={t('auth.emailPlaceholder')}
         value={email}
         onChange={(e) => setEmail(e.target.value)}
         required
@@ -65,11 +66,16 @@ export function LoginForm() {
         label={t('auth.password')}
         type="password"
         autoComplete="current-password"
+        placeholder={t('auth.passwordPlaceholder')}
         value={password}
         onChange={(e) => setPassword(e.target.value)}
         required
       />
-      {error && <p className="text-sm text-red-600" role="alert">{error}</p>}
+      {error && (
+        <p className="text-sm text-red-600" role="alert">
+          {error}
+        </p>
+      )}
       <Button type="submit" isLoading={isLoading} className="w-full">
         {t('auth.loginButton')}
       </Button>

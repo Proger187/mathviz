@@ -13,13 +13,33 @@
   "nav": {
     "home": "Home",
     "calculators": "Calculators",
-    "dashboard": "Dashboard",
+    "quizzes": "Quizzes",
+    "dashboard": "My progress",
     "leaderboard": "Leaderboard",
     "login": "Log in",
-    "register": "Create account",
+    "register": "Sign up free",
     "logout": "Log out",
-    "openMenu": "Open navigation menu",
-    "closeMenu": "Close navigation menu"
+    "menu": "Menu",
+    "openMenu": "Open menu",
+    "closeMenu": "Close menu",
+    "tagline": "Math you can see",
+    "language": "Language",
+    "mainNavigation": "Main navigation",
+    "quickNavigation": "Quick navigation",
+    "sectionLearn": "Explore",
+    "sectionCalculators": "Visual calculators",
+    "sectionPractice": "Quizzes",
+    "sectionAccount": "Your account",
+    "homeHint": "Overview and how to start",
+    "leaderboardHint": "See who learned the most this week",
+    "dashboardHint": "XP, streaks, badges, and history",
+    "quizItemHint": "Practice with timed questions",
+    "myAccount": "Hello, {username}",
+    "languages": {
+      "en": "English",
+      "ru": "Russian",
+      "kg": "Kyrgyz"
+    }
   },
   "landing": {
     "heroTitle": "See math work in front of you",
@@ -42,20 +62,26 @@
     "guestPrompt": "Enjoying this? Track your progress — create a free account"
   },
   "auth": {
-    "email": "Email",
+    "email": "Email address",
     "password": "Password",
-    "username": "Username",
+    "username": "Display name",
+    "emailPlaceholder": "you@school.kg",
+    "usernamePlaceholder": "Your nickname",
+    "passwordPlaceholder": "At least 8 characters",
     "loginTitle": "Welcome back",
-    "registerTitle": "Create your account",
+    "loginSubtitle": "Sign in to save your XP, streaks, and badges.",
+    "registerTitle": "Create a free account",
+    "registerSubtitle": "Takes less than a minute. No payment required.",
     "loginButton": "Log in",
     "registerButton": "Create account",
     "alreadyHaveAccount": "Already have an account?",
-    "noAccount": "Don't have an account?",
+    "noAccount": "New here?",
     "loginLink": "Log in",
-    "registerLink": "Create one"
+    "registerLink": "Sign up free"
   },
   "dashboard": {
-    "title": "Dashboard",
+    "title": "My progress",
+    "subtitle": "Track your learning journey",
     "welcome": "Welcome, {username}!",
     "levelLabel": "Level {level}",
     "xpProgress": "{current} / {next} XP",
@@ -70,7 +96,7 @@
   },
   "leaderboard": {
     "title": "Weekly leaderboard",
-    "subtitle": "Top players by XP earned this week",
+    "subtitle": "Top learners by XP earned this week — updated regularly",
     "rank": "Rank",
     "player": "Player",
     "weeklyXp": "Weekly XP",
@@ -78,6 +104,9 @@
     "you": "You"
   },
   "quiz": {
+    "pageSubtitle": "Choose a topic and difficulty. Answer questions to earn XP.",
+    "pickDifficulty": "How challenging should it be?",
+    "comingSoon": "Full quiz flow is coming soon — you can practice in calculators today.",
     "start": "Start quiz",
     "submit": "Submit answer",
     "reveal": "Reveal answer",
@@ -112,20 +141,30 @@
     "denominator": "Denominator",
     "calculate": "Calculate",
     "stepNavLabel": "Step navigation",
-    "operation": "Operation"
+    "operation": "Operation",
+    "fractions": {
+      "first": "First fraction",
+      "second": "Second fraction",
+      "add": "Add",
+      "subtract": "Subtract",
+      "enterValues": "Enter two fractions and choose an operation",
+      "visual": "Each circle shows shaded parts — the denominator is how many equal parts, the numerator is how many are shaded"
+    }
   },
   "modes": {
     "fractions": {
-      "label": "Pizza Fractions",
-      "description": "Add and subtract fractions using pizza slices",
-      "step0": "Here are your two fractions: {a}/{b} and {c}/{d}",
-      "step1": "These pizzas have different slice counts — let's fix that",
-      "step2": "Re-slicing both pizzas to {lcd} slices",
-      "step3": "Now both have {lcd} slices — ready to combine",
-      "step4": "Combined result: {n}/{d}"
+      "label": "Fractions",
+      "shortHint": "Add and subtract step by step",
+      "description": "Add and subtract fractions with a clear circle model — same-sized parts, then combine",
+      "step0": "Start with {a}/{b} and {c}/{d}.",
+      "step1": "The parts are different sizes (denominators {b} and {d}). We need equal parts to add or subtract.",
+      "step2": "Both circles are now divided into {lcd} equal parts.",
+      "step3": "Same-sized parts — now we can combine the shaded areas.",
+      "step4": "Result: {n}/{d}"
     },
     "negative": {
       "label": "Number Line",
+      "shortHint": "Jump left and right on a line",
       "description": "Learn positive and negative jumps on a number line",
       "step0": "Starting at {a} on the number line",
       "step1": "We will move {direction} by {b} steps",
@@ -134,6 +173,7 @@
     },
     "multiplication": {
       "label": "Area Grid",
+      "shortHint": "Multiply by filling a grid",
       "description": "See multiplication as filling a rectangular area",
       "step0": "Building a {a} by {b} grid",
       "step1": "Filling row by row — {filled} of {total} squares",
@@ -141,6 +181,7 @@
     },
     "division": {
       "label": "Fair Share",
+      "shortHint": "Share items equally step by step",
       "description": "Split a group of items equally into boxes",
       "step0": "We have {total} items to share between {groups} groups",
       "step1": "Distributing items one by one...",

@@ -23,7 +23,7 @@ export default function RootLayout({
 }): React.ReactElement {
   return (
     <html lang="en">
-      <body>
+      <body className="min-h-screen font-sans">
         <Providers>{children}</Providers>
       </body>
     </html>

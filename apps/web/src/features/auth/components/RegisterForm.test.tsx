@@ -10,8 +10,7 @@ vi.mock('next/navigation', () => ({
 }))
 
 vi.mock('@/store/auth.store', () => ({
-  useAuthStore: (selector: (s: { signIn: () => void }) => unknown) =>
-    selector({ signIn: vi.fn() }),
+  useAuthStore: (selector: (s: { signIn: () => void }) => unknown) => selector({ signIn: vi.fn() }),
 }))
 
 const mockFetch = vi.fn()
@@ -31,7 +30,7 @@ describe('RegisterForm', () => {
   it('renders email, username, password fields and submit button', () => {
     renderForm()
     expect(screen.getByLabelText(/email/i)).toBeTruthy()
-    expect(screen.getByLabelText(/username/i)).toBeTruthy()
+    expect(screen.getByLabelText(/display name/i)).toBeTruthy()
     expect(screen.getByLabelText(/password/i)).toBeTruthy()
     expect(screen.getByRole('button', { name: /create account/i })).toBeTruthy()
   })
@@ -50,7 +49,7 @@ describe('RegisterForm', () => {
     renderForm()
 
     await ua.type(screen.getByLabelText(/email/i), 'a@b.com')
-    await ua.type(screen.getByLabelText(/username/i), 'alice')
+    await ua.type(screen.getByLabelText(/display name/i), 'alice')
     await ua.type(screen.getByLabelText(/password/i), 'password1')
     await ua.click(screen.getByRole('button', { name: /create account/i }))
 
@@ -74,7 +73,7 @@ describe('RegisterForm', () => {
     renderForm()
 
     await ua.type(screen.getByLabelText(/email/i), 'taken@b.com')
-    await ua.type(screen.getByLabelText(/username/i), 'bob')
+    await ua.type(screen.getByLabelText(/display name/i), 'bob')
     await ua.type(screen.getByLabelText(/password/i), 'password1')
     await ua.click(screen.getByRole('button', { name: /create account/i }))
 

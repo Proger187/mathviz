@@ -7,9 +7,11 @@ export function Footer() {
   const year = new Date().getFullYear()
 
   return (
-    <footer className="border-t border-gray-100 bg-white py-6">
-      <div className="mx-auto max-w-6xl px-4 text-center text-sm text-gray-400">
-        © {year} {t('common.appName')}
+    <footer className="mt-auto border-t border-slate-200/80 bg-white/80 py-6 safe-bottom">
+      <div className="mx-auto max-w-5xl px-4 text-center text-sm text-slate-500 sm:px-6">
+        <p>
+          © {year} {t('common.appName')} — {t('nav.tagline')}
+        </p>
       </div>
     </footer>
   )
