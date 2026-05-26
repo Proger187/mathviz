@@ -81,14 +81,6 @@ export function LandingFooter() {
                   {t('nav.register')}
                 </Link>
               </li>
-              <li>
-                <Link
-                  href={ROUTES.LEADERBOARD}
-                  className="text-sm text-slate-600 hover:text-slate-900"
-                >
-                  {t('nav.leaderboard')}
-                </Link>
-              </li>
             </ul>
           </div>
         </div>

@@ -251,7 +251,7 @@ export function Sidebar({ open, onClose }: SidebarProps) {
         id="app-sidebar"
         className={cn(
           'fixed inset-y-0 left-0 z-50 flex w-[min(100vw-3rem,16rem)] flex-col border-r border-slate-200/80 bg-white shadow-xl transition-transform duration-200 ease-out',
-          'lg:static lg:z-auto lg:w-60 lg:translate-x-0 lg:shadow-none',
+          'lg:fixed lg:z-auto lg:w-60 lg:translate-x-0 lg:shadow-none lg:inset-y-0 lg:left-0',
           open ? 'translate-x-0' : '-translate-x-full lg:translate-x-0',
         )}
         aria-label={t('nav.mainNavigation')}

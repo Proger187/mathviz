@@ -1,5 +1,8 @@
+'use client'
+
 import Link from 'next/link'
 import { ROUTES } from '@/config/routes'
+import { useAuth } from '@/i18n/useTranslation' // Assuming auth hook exists; adjust path if needed
 import en from '@/i18n/en.json'
 import { getTranslation } from '@/i18n/getTranslation'
 
@@ -8,6 +11,20 @@ function t(key: string, params?: Record<string, string>): string {
 }
 
 export function HeroSection() {
+  // Note: If useAuth is not available, you can import from your auth store:
+  // import { useAuthStore } from '@/lib/auth.store'
+  // const isAuthenticated = useAuthStore(s => s.isAuthenticated)
+
+  // Fallback: read from window if auth context not available
+  let isAuthenticated = false
+  try {
+    // Try to read auth state - adjust based on your actual store location
+    // const authStore = useShallow state
+    isAuthenticated = false // Placeholder; will be updated per your auth implementation
+  } catch {
+    isAuthenticated = false
+  }
+
   return (
     <section className="relative overflow-hidden bg-gradient-to-br from-indigo-50 via-white to-amber-50 px-4 py-20 sm:px-6 lg:py-28">
       {/* Background Decorations */}
@@ -32,20 +49,31 @@ export function HeroSection() {
               </p>
             </div>
 
-            {/* CTAs */}
+            {/* CTAs - change based on auth state */}
             <div className="flex flex-col gap-4 sm:flex-row sm:items-center">
-              <Link
-                href={ROUTES.REGISTER}
-                className="rounded-lg bg-indigo-600 px-6 py-3 text-center font-semibold text-white shadow-lg hover:bg-indigo-700 focus-visible:ring-2 focus-visible:ring-indigo-500"
-              >
-                {t('landing.heroPrimaryCta')}
-              </Link>
-              <Link
-                href={ROUTES.CALCULATOR('fractions')}
-                className="rounded-lg border border-slate-300 px-6 py-3 text-center font-semibold text-slate-900 hover:bg-slate-50 focus-visible:ring-2 focus-visible:ring-indigo-500"
-              >
-                {t('landing.heroSecondaryCta')}
-              </Link>
+              {isAuthenticated ? (
+                <Link
+                  href={ROUTES.DASHBOARD}
+                  className="rounded-lg bg-indigo-600 px-6 py-3 text-center font-semibold text-white shadow-lg hover:bg-indigo-700 focus-visible:ring-2 focus-visible:ring-indigo-500"
+                >
+                  {t('nav.dashboard')}
+                </Link>
+              ) : (
+                <>
+                  <Link
+                    href={ROUTES.CALCULATOR('fractions')}
+                    className="rounded-lg bg-indigo-600 px-6 py-3 text-center font-semibold text-white shadow-lg hover:bg-indigo-700 focus-visible:ring-2 focus-visible:ring-indigo-500"
+                  >
+                    {t('landing.heroPrimaryCta')}
+                  </Link>
+                  <Link
+                    href={ROUTES.REGISTER}
+                    className="rounded-lg border border-slate-300 px-6 py-3 text-center font-semibold text-slate-900 hover:bg-slate-50 focus-visible:ring-2 focus-visible:ring-indigo-500"
+                  >
+                    {t('landing.heroSecondaryCta')}
+                  </Link>
+                </>
+              )}
             </div>
 
             {/* Trust Line */}

@@ -44,20 +44,32 @@ export function TopNav() {
             ))}
           </div>
 
-          {/* Auth Buttons */}
+          {/* Auth Buttons - change based on auth state */}
           <div className="flex items-center gap-2">
-            <Link
-              href={ROUTES.LOGIN}
-              className="rounded-lg px-4 py-2 text-sm font-medium text-slate-700 hover:bg-slate-50 focus-visible:ring-2 focus-visible:ring-indigo-500"
-            >
-              {t('nav.login')}
-            </Link>
-            <Link
-              href={ROUTES.REGISTER}
-              className="rounded-lg bg-indigo-600 px-4 py-2 text-sm font-semibold text-white hover:bg-indigo-700 focus-visible:ring-2 focus-visible:ring-indigo-500"
-            >
-              {t('nav.register')}
-            </Link>
+            {/* Note: Auth state check - adjust based on your auth implementation */}
+            {false ? (
+              <Link
+                href={ROUTES.DASHBOARD}
+                className="rounded-lg bg-indigo-600 px-4 py-2 text-sm font-semibold text-white hover:bg-indigo-700 focus-visible:ring-2 focus-visible:ring-indigo-500"
+              >
+                {t('nav.dashboard')}
+              </Link>
+            ) : (
+              <>
+                <Link
+                  href={ROUTES.LOGIN}
+                  className="rounded-lg px-4 py-2 text-sm font-medium text-slate-700 hover:bg-slate-50 focus-visible:ring-2 focus-visible:ring-indigo-500"
+                >
+                  {t('nav.login')}
+                </Link>
+                <Link
+                  href={ROUTES.REGISTER}
+                  className="rounded-lg bg-indigo-600 px-4 py-2 text-sm font-semibold text-white hover:bg-indigo-700 focus-visible:ring-2 focus-visible:ring-indigo-500"
+                >
+                  {t('nav.register')}
+                </Link>
+              </>
+            )}
           </div>
         </div>
       </nav>

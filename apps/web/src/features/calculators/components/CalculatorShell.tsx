@@ -80,7 +80,7 @@ export function CalculatorShell({ modeId }: CalculatorShellProps) {
           </div>
         }
       >
-        <ModeComponent showAdvancedMode={false} />
+        <ModeComponent showAdvancedMode={textSummary} />
       </Suspense>
     </div>
   )
