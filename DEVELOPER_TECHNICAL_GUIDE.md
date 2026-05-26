@@ -76,7 +76,7 @@
 mathviz/                          ← pnpm monorepo root
 ├── apps/
 │   ├── web/                      ← Next.js 15 frontend (port 3000)
-│   └── api/                      ← Express 5 backend (port 3001)
+│   └── api/                      ← Express 5 backend (port 8080)
 ├── packages/
 │   └── shared/                   ← Zod schemas, TS types, constants (imported by both apps)
 ├── turbo.json                    ← Turborepo pipeline config
@@ -99,7 +99,7 @@ pnpm dev
 
 # Or run individually
 pnpm --filter web dev        # frontend on :3000
-pnpm --filter api dev        # backend on :3001
+pnpm --filter api dev        # backend on :8080
 
 # Type check all packages
 pnpm typecheck
@@ -373,7 +373,7 @@ src/i18n/
 
 ## 6. Backend — `apps/api`
 
-The backend is an **Express 5** REST API on **Node.js 20**, serving the frontend exclusively under the `/api/v1` prefix. It runs on port `3001` in development.
+The backend is an **Express 5** REST API on **Node.js 20**, serving the frontend exclusively under the `/api/v1` prefix. It runs on port `8080` in development.
 
 ### Entry Point & Middleware Stack
 
@@ -775,7 +775,7 @@ All variables are validated at startup via Zod (`apps/api/src/config/env.ts`). T
 | Variable             | Type                                | Description                                      |
 | -------------------- | ----------------------------------- | ------------------------------------------------ |
 | `NODE_ENV`           | `development \| test \| production` | Default: `development`                           |
-| `PORT`               | number                              | Default: `3001`                                  |
+| `PORT`               | number                              | Default: `8080`                                  |
 | `DATABASE_URL`       | URL string                          | PostgreSQL connection string (Neon serverless)   |
 | `JWT_ACCESS_SECRET`  | string ≥32 chars                    | Signs 15-minute access tokens                    |
 | `JWT_REFRESH_SECRET` | string ≥32 chars                    | Signs 7-day refresh tokens                       |
@@ -786,7 +786,7 @@ All variables are validated at startup via Zod (`apps/api/src/config/env.ts`). T
 
 | Variable              | Description                              |
 | --------------------- | ---------------------------------------- |
-| `NEXT_PUBLIC_API_URL` | Backend URL e.g. `http://localhost:3001` |
+| `NEXT_PUBLIC_API_URL` | Backend URL e.g. `http://localhost:8080` |
 
 ---
 

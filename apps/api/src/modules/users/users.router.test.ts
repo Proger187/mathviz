@@ -5,7 +5,7 @@ import { describe, it, expect, vi, beforeEach } from 'vitest'
 vi.mock('../../config/env.js', () => ({
   env: {
     NODE_ENV: 'test',
-    PORT: 3001,
+    PORT: 8080,
     FRONTEND_ORIGIN: 'http://localhost:3000',
     JWT_ACCESS_SECRET: 'test-access-secret-at-least-32-chars!!',
     JWT_REFRESH_SECRET: 'test-refresh-secret-at-least-32-chars!',
@@ -29,11 +29,9 @@ import { app } from '../../index.js'
 const JWT_SECRET = 'test-access-secret-at-least-32-chars!!'
 
 function makeToken(userId = 'user-1') {
-  return jwt.sign(
-    { sub: userId, email: 'alice@example.com', username: 'alice' },
-    JWT_SECRET,
-    { expiresIn: '15m' },
-  )
+  return jwt.sign({ sub: userId, email: 'alice@example.com', username: 'alice' }, JWT_SECRET, {
+    expiresIn: '15m',
+  })
 }
 
 const MOCK_PROFILE = {
@@ -78,9 +76,7 @@ describe('GET /api/v1/users/me/badges', () => {
   })
 
   it('returns badges array when authenticated', async () => {
-    const badges = [
-      { key: 'first_quiz', label: 'First Quiz', earnedAt: '2026-01-01T00:00:00Z' },
-    ]
+    const badges = [{ key: 'first_quiz', label: 'First Quiz', earnedAt: '2026-01-01T00:00:00Z' }]
     mockGetMyBadges.mockResolvedValue(badges)
 
     const res = await request(app)

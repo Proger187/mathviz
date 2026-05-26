@@ -2,7 +2,7 @@ import type { ApiErrorCode } from '@mathviz/shared'
 
 import { getAccessToken } from './token'
 
-const API_BASE = process.env.NEXT_PUBLIC_API_URL ?? 'http://localhost:3001'
+const API_BASE = process.env.NEXT_PUBLIC_API_URL ?? 'http://localhost:8080'
 
 export interface ApiError {
   code: ApiErrorCode

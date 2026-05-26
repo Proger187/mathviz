@@ -45,7 +45,7 @@ cp .env.example apps/api/.env
 pnpm dev
 ```
 
-This starts both the Next.js dev server (`http://localhost:3000`) and the Express API server (`http://localhost:3001`) simultaneously via Turborepo.
+This starts both the Next.js dev server (`http://localhost:3000`) and the Express API server (`http://localhost:8080`) simultaneously via Turborepo.
 
 ## Available Scripts
 

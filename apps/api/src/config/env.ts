@@ -1,11 +1,18 @@
 import { config } from 'dotenv'
+import { resolve, dirname } from 'path'
+import { fileURLToPath } from 'url'
 import { z } from 'zod'
 
-config()
+const currentDir = dirname(fileURLToPath(import.meta.url))
+const rootEnvPath = resolve(currentDir, '../../../../.env')
+const apiEnvPath = resolve(currentDir, '../../.env')
+
+config({ path: rootEnvPath })
+config({ path: apiEnvPath })
 
 const envSchema = z.object({
   NODE_ENV: z.enum(['development', 'test', 'production']).default('development'),
-  PORT: z.coerce.number().int().positive().default(3001),
+  PORT: z.coerce.number().int().positive().default(8080),
   DATABASE_URL: z.string().url('DATABASE_URL must be a valid URL'),
   JWT_ACCESS_SECRET: z.string().min(32, 'JWT_ACCESS_SECRET must be at least 32 characters'),
   JWT_REFRESH_SECRET: z.string().min(32, 'JWT_REFRESH_SECRET must be at least 32 characters'),

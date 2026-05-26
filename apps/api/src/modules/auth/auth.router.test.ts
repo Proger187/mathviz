@@ -5,7 +5,7 @@ import { describe, it, expect, vi, beforeEach } from 'vitest'
 vi.mock('../../config/env.js', () => ({
   env: {
     NODE_ENV: 'test',
-    PORT: 3001,
+    PORT: 8080,
     FRONTEND_ORIGIN: 'http://localhost:3000',
     JWT_ACCESS_SECRET: 'test-access-secret-at-least-32-chars!!',
     JWT_REFRESH_SECRET: 'test-refresh-secret-at-least-32-chars!',
@@ -64,7 +64,9 @@ describe('POST /api/v1/auth/register', () => {
   })
 
   it('returns 409 on duplicate email (AUTH_EMAIL_TAKEN)', async () => {
-    mockRegisterUser.mockRejectedValue(new AppError('AUTH_EMAIL_TAKEN', 'Email is already registered'))
+    mockRegisterUser.mockRejectedValue(
+      new AppError('AUTH_EMAIL_TAKEN', 'Email is already registered'),
+    )
 
     const res = await request(app)
       .post('/api/v1/auth/register')
@@ -99,7 +101,9 @@ describe('POST /api/v1/auth/login', () => {
   })
 
   it('returns 401 on wrong password (AUTH_INVALID_CREDENTIALS)', async () => {
-    mockLoginUser.mockRejectedValue(new AppError('AUTH_INVALID_CREDENTIALS', 'Incorrect email or password'))
+    mockLoginUser.mockRejectedValue(
+      new AppError('AUTH_INVALID_CREDENTIALS', 'Incorrect email or password'),
+    )
 
     const res = await request(app)
       .post('/api/v1/auth/login')
@@ -125,11 +129,11 @@ describe('POST /api/v1/auth/refresh', () => {
   })
 
   it('returns 401 on invalid refresh token', async () => {
-    mockRefreshTokens.mockRejectedValue(new AppError('AUTH_TOKEN_INVALID', 'Invalid or expired token'))
+    mockRefreshTokens.mockRejectedValue(
+      new AppError('AUTH_TOKEN_INVALID', 'Invalid or expired token'),
+    )
 
-    const res = await request(app)
-      .post('/api/v1/auth/refresh')
-      .send({ refreshToken: 'bad-token' })
+    const res = await request(app).post('/api/v1/auth/refresh').send({ refreshToken: 'bad-token' })
 
     expect(res.status).toBe(401)
   })
@@ -142,9 +146,7 @@ describe('POST /api/v1/auth/logout', () => {
   beforeEach(() => vi.resetAllMocks())
 
   it('returns 401 without a valid Bearer token', async () => {
-    const res = await request(app)
-      .post('/api/v1/auth/logout')
-      .send({ refreshToken: 'some-token' })
+    const res = await request(app).post('/api/v1/auth/logout').send({ refreshToken: 'some-token' })
 
     expect(res.status).toBe(401)
   })

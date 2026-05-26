@@ -4,7 +4,7 @@ import { describe, it, expect, vi, beforeEach } from 'vitest'
 vi.mock('../../config/env.js', () => ({
   env: {
     NODE_ENV: 'test',
-    PORT: 3001,
+    PORT: 8080,
     FRONTEND_ORIGIN: 'http://localhost:3000',
     JWT_ACCESS_SECRET: 'test-access-secret-at-least-32-chars!!',
     JWT_REFRESH_SECRET: 'test-refresh-secret-at-least-32-chars!',
