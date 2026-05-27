@@ -23,7 +23,11 @@ export function errorHandler(
 
   // Unknown error — log full details in dev, return opaque 500 in prod
   if (env.NODE_ENV !== 'production' && err instanceof Error) {
-    logger.error(err.message, { stack: err.stack })
+    const cause = (err as Error & { cause?: unknown }).cause
+    logger.error(err.message, {
+      stack: err.stack,
+      ...(cause instanceof Error && { cause: cause.message }),
+    })
   } else {
     logger.error('Unhandled error')
   }
