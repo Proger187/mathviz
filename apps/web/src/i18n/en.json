@@ -12,8 +12,9 @@
   },
   "nav": {
     "home": "Home",
-    "calculators": "Calculators",
-    "quizzes": "Quizzes",
+    "topics": "Topics",
+    "learn": "Learn",
+    "quiz": "Quiz",
     "dashboard": "My progress",
     "leaderboard": "Leaderboard",
     "login": "Log in",
@@ -110,7 +111,8 @@
     "noBadgesYet": "No badges earned yet — complete a quiz to start!",
     "recentActivity": "Recent activity",
     "noRecentActivity": "No quizzes completed yet.",
-    "quickStart": "Quick start",
+    "continueLearning": "Continue learning",
+    "lastPracticed": "Last practiced on {date}",
     "score": "Score: {score}",
     "xpEarned": "+{xp} XP"
   },

@@ -12,8 +12,9 @@
   },
   "nav": {
     "home": "Главная",
-    "calculators": "Калькуляторы",
-    "quizzes": "Викторины",
+    "topics": "Темы",
+    "learn": "Выучить",
+    "quiz": "Викторина",
     "dashboard": "Мой прогресс",
     "leaderboard": "Рейтинг",
     "login": "Войти",
@@ -110,7 +111,8 @@
     "noBadgesYet": "Значков пока нет — пройди квиз, чтобы начать!",
     "recentActivity": "Последняя активность",
     "noRecentActivity": "Квизы ещё не пройдены.",
-    "quickStart": "Быстрый старт",
+    "continueLearning": "Продолжить обучение",
+    "lastPracticed": "Последняя практика {date}",
     "score": "Счёт: {score}",
     "xpEarned": "+{xp} XP"
   },

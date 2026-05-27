@@ -7,11 +7,12 @@ import { useEffect, useState } from 'react'
 import { NavIcon } from '@/components/icons/NavIcons'
 import {
   ACCOUNT_NAV,
-  CALCULATOR_NAV,
   MAIN_NAV,
-  QUIZ_NAV,
+  TOPICS_NAV,
   sectionHasActive,
+  topicHasActive,
   type NavItem,
+  type TopicNavItem,
 } from '@/config/navigation'
 import { ROUTES } from '@/config/routes'
 import { useTranslation } from '@/i18n/useTranslation'
@@ -55,26 +56,22 @@ function NavLink({
   )
 }
 
-function CollapsibleGroup({
-  titleKey,
-  groupIcon,
-  items,
+function TopicGroup({
+  topic,
   pathname,
   onNavigate,
 }: {
-  titleKey: string
-  groupIcon: 'calculator' | 'quiz'
-  items: NavItem[]
+  topic: TopicNavItem
   pathname: string
   onNavigate: () => void
 }) {
   const { t } = useTranslation()
-  const isGroupActive = sectionHasActive(items, pathname)
-  const [expanded, setExpanded] = useState(isGroupActive)
+  const isTopicActive = sectionHasActive(topic.children, pathname)
+  const [expanded, setExpanded] = useState(isTopicActive)
 
   useEffect(() => {
-    if (isGroupActive) setExpanded(true)
-  }, [isGroupActive])
+    if (isTopicActive) setExpanded(true)
+  }, [isTopicActive])
 
   return (
     <div>
@@ -84,22 +81,22 @@ function CollapsibleGroup({
         className={cn(
           'flex w-full items-center gap-3 rounded-lg px-3 py-2.5 text-left transition-colors',
           'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500',
-          isGroupActive && !expanded
+          isTopicActive && !expanded
             ? 'bg-indigo-50 text-indigo-800'
             : 'text-slate-800 hover:bg-slate-100',
         )}
         aria-expanded={expanded}
       >
-        <NavIcon name={groupIcon} className="text-indigo-600" />
-        <span className="flex-1 truncate text-sm font-semibold">{t(titleKey)}</span>
+        <NavIcon name={topic.icon} className="text-indigo-600" />
+        <span className="flex-1 truncate text-sm font-semibold">{t(topic.labelKey)}</span>
         <NavIcon
           name="chevron"
           className={cn('h-4 w-4 text-slate-400 transition-transform', expanded && 'rotate-90')}
         />
       </button>
       {expanded && (
-        <div className="space-y-0.5">
-          {items.map((item) => (
+        <div className="ml-6 space-y-0.5 border-l border-slate-200 py-1 pl-2">
+          {topic.children.map((item) => (
             <NavLink key={item.href} item={item} pathname={pathname} onNavigate={onNavigate} />
           ))}
         </div>
@@ -180,21 +177,14 @@ export function Sidebar({ open, onClose }: SidebarProps) {
           <NavLink key={item.href} item={item} pathname={pathname} onNavigate={onClose} />
         ))}
 
-        <CollapsibleGroup
-          titleKey="nav.calculators"
-          groupIcon="calculator"
-          items={CALCULATOR_NAV}
-          pathname={pathname}
-          onNavigate={onClose}
-        />
-
-        <CollapsibleGroup
-          titleKey="nav.quizzes"
-          groupIcon="quiz"
-          items={QUIZ_NAV}
-          pathname={pathname}
-          onNavigate={onClose}
-        />
+        <div className="space-y-1 border-t border-slate-200/80 pt-2 mt-2">
+          <div className="px-3 py-2 text-xs font-semibold uppercase text-slate-500">
+            {t('nav.topics')}
+          </div>
+          {TOPICS_NAV.map((topic) => (
+            <TopicGroup key={topic.id} topic={topic} pathname={pathname} onNavigate={onClose} />
+          ))}
+        </div>
 
         {isAuthenticated &&
           ACCOUNT_NAV.map((item) => (

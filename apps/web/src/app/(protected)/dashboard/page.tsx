@@ -112,26 +112,40 @@ export default function DashboardPage() {
             </section>
           </div>
 
-          <section className="rounded-2xl border border-slate-200/80 bg-white p-5 shadow-card sm:p-6">
-            <h2 className="text-lg font-semibold text-slate-900">{t('dashboard.quickStart')}</h2>
-            <div className="mt-4 grid grid-cols-2 gap-3 sm:grid-cols-4">
-              {(Object.keys(MODES) as ModeId[]).map((id) => {
-                const mode = MODES[id]
-                return (
-                  <Link
-                    key={id}
-                    href={ROUTES.CALCULATOR(id)}
-                    className="flex flex-col items-center gap-2 rounded-xl border border-slate-200 p-4 text-center transition hover:border-indigo-300 hover:bg-indigo-50"
-                  >
-                    <span className="text-3xl">{mode.icon}</span>
-                    <span className="text-xs font-semibold leading-tight text-slate-800">
-                      {t(`modes.${id}.label`)}
-                    </span>
-                  </Link>
-                )
-              })}
-            </div>
-          </section>
+          {history &&
+            history.length > 0 &&
+            (() => {
+              const lastSession = history[0]
+              if (!lastSession) return null
+              const modeId = lastSession.mode as ModeId
+              const mode = MODES[modeId]
+              return (
+                <section className="rounded-2xl border border-slate-200/80 bg-white p-5 shadow-card sm:p-6">
+                  <h2 className="text-lg font-semibold text-slate-900">
+                    {t('dashboard.continueLearning')}
+                  </h2>
+                  <div className="mt-4 flex items-center justify-between rounded-xl border border-indigo-200 bg-gradient-to-r from-indigo-50 to-indigo-100/50 p-4 sm:p-5">
+                    <div className="flex items-center gap-4">
+                      <span className="text-4xl">{mode.icon}</span>
+                      <div>
+                        <p className="font-semibold text-slate-900">{t(`modes.${modeId}.label`)}</p>
+                        <p className="text-sm text-slate-600">
+                          {t('dashboard.lastPracticed', {
+                            date: formatDate(lastSession.completedAt),
+                          })}
+                        </p>
+                      </div>
+                    </div>
+                    <Link
+                      href={ROUTES.QUIZ(modeId)}
+                      className="rounded-lg bg-indigo-600 px-4 py-2 text-sm font-semibold text-white hover:bg-indigo-700 transition"
+                    >
+                      {t('nav.quiz')}
+                    </Link>
+                  </div>
+                </section>
+              )
+            })()}
 
           <section className="rounded-2xl border border-slate-200/80 bg-white p-5 shadow-card sm:p-6">
             <h2 className="text-lg font-semibold text-slate-900">{t('dashboard.badgesTitle')}</h2>

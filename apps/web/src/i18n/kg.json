@@ -12,8 +12,9 @@
   },
   "nav": {
     "home": "Башкы бет",
-    "calculators": "Калькуляторлор",
-    "quizzes": "Викториналар",
+    "topics": "Темалар",
+    "learn": "Үйрөнүү",
+    "quiz": "Викториналар",
     "dashboard": "Менин прогрессим",
     "leaderboard": "Рейтинг",
     "login": "Кирүү",
@@ -110,7 +111,8 @@
     "noBadgesYet": "Азырынча белги жок — баштоо үчүн викторинага катышуу!",
     "recentActivity": "Акыркы активдүүлүк",
     "noRecentActivity": "Азырынча викторина аяктаган жок.",
-    "quickStart": "Тез баштоо",
+    "continueLearning": "Окууну улантуу",
+    "lastPracticed": "Акыркы ынамдоо {date}",
     "score": "Упай: {score}",
     "xpEarned": "+{xp} XP"
   },
