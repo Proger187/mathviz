@@ -97,7 +97,7 @@ export default function DivisionCalculator({
         >
           <Input
             id="div-total"
-            label="Total items (1–100)"
+            label={t('calculator.totalItems')}
             type="number"
             min={1}
             max={100}
@@ -113,7 +113,7 @@ export default function DivisionCalculator({
           <div className="flex flex-col gap-1">
             <Input
               id="div-groups"
-              label="Groups (1–20)"
+              label={t('calculator.groups')}
               type="number"
               min={1}
               max={20}
@@ -123,7 +123,14 @@ export default function DivisionCalculator({
                 setGroups(v)
                 setErrGroups(false)
               }}
-              {...(errGroups ? { error: groups === 0 ? t('validation.divideByZero') : t('validation.numberOutOfRange', { min: 1, max: 20 }) } : {})}
+              {...(errGroups
+                ? {
+                    error:
+                      groups === 0
+                        ? t('validation.divideByZero')
+                        : t('validation.numberOutOfRange', { min: 1, max: 20 }),
+                  }
+                : {})}
               className="w-24"
             />
           </div>
@@ -221,7 +228,7 @@ export default function DivisionCalculator({
                 onAnswer?.(String(dist.itemsPerGroup))
               }}
             >
-              Reveal Answer
+              {t('quiz.reveal')}
             </Button>
           )}
         </div>

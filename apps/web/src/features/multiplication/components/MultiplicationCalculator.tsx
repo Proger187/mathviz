@@ -118,7 +118,7 @@ export default function MultiplicationCalculator({
         >
           <Input
             id="mul-a"
-            label="Rows (1–20)"
+            label={t('calculator.rows')}
             type="number"
             min={1}
             max={20}
@@ -133,7 +133,7 @@ export default function MultiplicationCalculator({
           <span className="pb-2 text-xl font-bold text-gray-500">×</span>
           <Input
             id="mul-b"
-            label="Columns (1–20)"
+            label={t('calculator.columns')}
             type="number"
             min={1}
             max={20}
@@ -183,7 +183,10 @@ export default function MultiplicationCalculator({
       </p>
 
       {/* Step navigation */}
-      <nav aria-label={t('calculator.stepNavLabel')} className="flex flex-wrap items-center justify-center gap-3">
+      <nav
+        aria-label={t('calculator.stepNavLabel')}
+        className="flex flex-wrap items-center justify-center gap-3"
+      >
         <Button variant="secondary" size="sm" onClick={goBack} disabled={!canGoBack}>
           {t('calculator.previousStep')}
         </Button>
@@ -201,11 +204,11 @@ export default function MultiplicationCalculator({
       {/* Extra controls */}
       <div className="flex flex-wrap justify-center gap-2">
         <Button variant="secondary" size="sm" onClick={flipGrid}>
-          Flip grid
+          {t('calculator.flipGrid')}
         </Button>
         {showBreakdown && (
           <Button variant="secondary" size="sm" onClick={togglePartialProducts}>
-            {showPartialProducts ? 'Hide breakdown' : 'Show breakdown'}
+            {showPartialProducts ? t('calculator.hideBreakdown') : t('calculator.showBreakdown')}
           </Button>
         )}
       </div>
@@ -214,7 +217,7 @@ export default function MultiplicationCalculator({
       {showPartialProducts && breakdown.length > 0 && (
         <div className="rounded-lg bg-blue-50 px-4 py-3">
           <p className="mb-1 text-xs font-semibold uppercase tracking-wide text-blue-700">
-            Distributive property
+            {t('calculator.distributiveProperty')}
           </p>
           <div className="flex flex-wrap gap-2 text-sm">
             {breakdown.map((pp, i) => (
@@ -252,7 +255,7 @@ export default function MultiplicationCalculator({
                 onAnswer?.(String(result))
               }}
             >
-              Reveal Answer
+              {t('quiz.reveal')}
             </Button>
           )}
         </div>

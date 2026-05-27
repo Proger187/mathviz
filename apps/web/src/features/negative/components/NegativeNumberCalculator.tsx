@@ -25,11 +25,7 @@ const SHAKE_VARIANTS: Variants = {
 
 function isNegativeProblem(p: CalculatorProps['problem']): p is NegativeProblem {
   return (
-    p !== undefined &&
-    'a' in p &&
-    'operation' in p &&
-    !('numeratorA' in p) &&
-    !('dividend' in p)
+    p !== undefined && 'a' in p && 'operation' in p && !('numeratorA' in p) && !('dividend' in p)
   )
 }
 
@@ -114,7 +110,7 @@ export default function NegativeNumberCalculator({
         >
           <Input
             id="neg-a"
-            label="First number"
+            label={t('calculator.firstNumber')}
             type="number"
             value={a}
             onChange={(e) => {
@@ -137,7 +133,7 @@ export default function NegativeNumberCalculator({
           </div>
           <Input
             id="neg-b"
-            label="Second number"
+            label={t('calculator.secondNumber')}
             type="number"
             value={b}
             onChange={(e) => {
@@ -176,7 +172,7 @@ export default function NegativeNumberCalculator({
             className="rounded"
           />
           <label htmlFor="neg-advanced" className="text-sm text-gray-700">
-            Show additive inverse
+            {t('calculator.showAdditiveInverse')}
           </label>
         </div>
       )}
@@ -208,7 +204,10 @@ export default function NegativeNumberCalculator({
       </p>
 
       {/* Step navigation */}
-      <nav aria-label={t('calculator.stepNavLabel')} className="flex items-center justify-center gap-3">
+      <nav
+        aria-label={t('calculator.stepNavLabel')}
+        className="flex items-center justify-center gap-3"
+      >
         <Button variant="secondary" size="sm" onClick={goBack} disabled={!canGoBack}>
           {t('calculator.previousStep')}
         </Button>
@@ -243,7 +242,7 @@ export default function NegativeNumberCalculator({
                 onAnswer?.(String(result))
               }}
             >
-              Reveal Answer
+              {t('quiz.reveal')}
             </Button>
           )}
         </div>
