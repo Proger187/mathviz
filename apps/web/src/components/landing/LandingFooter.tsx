@@ -1,13 +1,10 @@
 import Link from 'next/link'
-import { ROUTES } from '@/config/routes'
-import en from '@/i18n/en.json'
-import { getTranslation } from '@/i18n/getTranslation'
 
-function t(key: string, params?: Record<string, string>): string {
-  return getTranslation(en, en, key, params)
-}
+import { ROUTES } from '@/config/routes'
+import { useTranslation } from '@/i18n/useTranslation'
 
 export function LandingFooter() {
+  const { t } = useTranslation()
   const year = new Date().getFullYear()
 
   return (

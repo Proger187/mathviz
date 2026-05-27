@@ -2,12 +2,8 @@
 
 import { useEffect, useRef, useState } from 'react'
 import { useInView } from 'framer-motion'
-import en from '@/i18n/en.json'
-import { getTranslation } from '@/i18n/getTranslation'
 
-function t(key: string, params?: Record<string, string>): string {
-  return getTranslation(en, en, key, params)
-}
+import { useTranslation } from '@/i18n/useTranslation'
 
 function CountUpStat({ target, label }: { target: number; label: string }) {
   const [count, setCount] = useState(0)
@@ -47,6 +43,7 @@ function CountUpStat({ target, label }: { target: number; label: string }) {
 }
 
 export function SocialProof() {
+  const { t } = useTranslation()
   return (
     <section className="bg-slate-100/50 px-4 py-16 sm:px-6 lg:py-20">
       <div className="mx-auto max-w-6xl">

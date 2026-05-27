@@ -1,10 +1,8 @@
 'use client'
 
 import { useState } from 'react'
-import { useTranslation } from '@/i18n/useTranslation'
 
 export function MultiplicationDemoWidget() {
-  const { t } = useTranslation()
   const [a, setA] = useState(3)
   const [b, setB] = useState(4)
   const [showAnimation, setShowAnimation] = useState(false)

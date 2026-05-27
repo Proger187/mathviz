@@ -1,10 +1,8 @@
 'use client'
 
 import { useState } from 'react'
-import { useTranslation } from '@/i18n/useTranslation'
 
 export function NegativeDemoWidget() {
-  const { t } = useTranslation()
   const [a, setA] = useState(-2)
   const [b, setB] = useState(3)
   const [showAnimation, setShowAnimation] = useState(false)

@@ -1,13 +1,10 @@
 import Link from 'next/link'
-import { ROUTES } from '@/config/routes'
-import en from '@/i18n/en.json'
-import { getTranslation } from '@/i18n/getTranslation'
 
-function t(key: string, params?: Record<string, string>): string {
-  return getTranslation(en, en, key, params)
-}
+import { ROUTES } from '@/config/routes'
+import { useTranslation } from '@/i18n/useTranslation'
 
 export function FinalCTA() {
+  const { t } = useTranslation()
   return (
     <section className="px-4 py-16 sm:px-6 lg:py-24">
       <div className="mx-auto max-w-2xl text-center">

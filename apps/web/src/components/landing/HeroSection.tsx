@@ -1,29 +1,13 @@
 'use client'
 
 import Link from 'next/link'
-import { ROUTES } from '@/config/routes'
-import { useAuth } from '@/i18n/useTranslation' // Assuming auth hook exists; adjust path if needed
-import en from '@/i18n/en.json'
-import { getTranslation } from '@/i18n/getTranslation'
 
-function t(key: string, params?: Record<string, string>): string {
-  return getTranslation(en, en, key, params)
-}
+import { ROUTES } from '@/config/routes'
+import { useTranslation } from '@/i18n/useTranslation'
 
 export function HeroSection() {
-  // Note: If useAuth is not available, you can import from your auth store:
-  // import { useAuthStore } from '@/lib/auth.store'
-  // const isAuthenticated = useAuthStore(s => s.isAuthenticated)
-
-  // Fallback: read from window if auth context not available
-  let isAuthenticated = false
-  try {
-    // Try to read auth state - adjust based on your actual store location
-    // const authStore = useShallow state
-    isAuthenticated = false // Placeholder; will be updated per your auth implementation
-  } catch {
-    isAuthenticated = false
-  }
+  const { t } = useTranslation()
+  const isAuthenticated = false
 
   return (
     <section className="relative overflow-hidden bg-gradient-to-br from-indigo-50 via-white to-amber-50 px-4 py-20 sm:px-6 lg:py-28">

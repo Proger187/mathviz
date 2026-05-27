@@ -1,14 +1,13 @@
-import en from '@/i18n/en.json'
-import { getTranslation } from '@/i18n/getTranslation'
-import { FractionDemoWidget } from './calculators/FractionDemoWidget'
-import { NegativeDemoWidget } from './calculators/NegativeDemoWidget'
-import { MultiplicationDemoWidget } from './calculators/MultiplicationDemoWidget'
+'use client'
 
-function t(key: string, params?: Record<string, string>): string {
-  return getTranslation(en, en, key, params)
-}
+import { useTranslation } from '@/i18n/useTranslation'
+
+import { FractionDemoWidget } from './calculators/FractionDemoWidget'
+import { MultiplicationDemoWidget } from './calculators/MultiplicationDemoWidget'
+import { NegativeDemoWidget } from './calculators/NegativeDemoWidget'
 
 export function LiveDemoStrip() {
+  const { t } = useTranslation()
   return (
     <section className="border-t border-b border-slate-200 bg-gradient-to-b from-slate-50 to-white px-4 py-16 sm:px-6">
       <div className="mx-auto max-w-6xl">

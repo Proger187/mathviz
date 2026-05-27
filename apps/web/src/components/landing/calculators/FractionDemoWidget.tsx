@@ -1,10 +1,8 @@
 'use client'
 
 import { useState } from 'react'
-import { useTranslation } from '@/i18n/useTranslation'
 
 export function FractionDemoWidget() {
-  const { t } = useTranslation()
   const [numerator, setNumerator] = useState(1)
   const [denominator, setDenominator] = useState(2)
   const [showAnimation, setShowAnimation] = useState(false)

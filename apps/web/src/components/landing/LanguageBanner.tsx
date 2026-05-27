@@ -1,15 +1,9 @@
 'use client'
 
 import { useTranslation } from '@/i18n/useTranslation'
-import en from '@/i18n/en.json'
-import { getTranslation } from '@/i18n/getTranslation'
-
-function t(key: string, params?: Record<string, string>): string {
-  return getTranslation(en, en, key, params)
-}
 
 export function LanguageBanner() {
-  const { setLocale } = useTranslation()
+  const { t, setLocale } = useTranslation()
 
   const languages = [
     { code: 'en', name: 'English', flag: '🇬🇧', description: 'Learn in English' },
