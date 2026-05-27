@@ -27,7 +27,9 @@ interface AuthActions {
 export const useAuthStore = create<AuthState & AuthActions>((set) => ({
   user: null,
   accessToken: null,
-  isLoading: false,
+  // Start in loading state: we don't know if there's a valid session until
+  // useAuthInit finishes its refresh-token check on mount.
+  isLoading: true,
   isAuthenticated: false,
 
   signIn: (user, accessToken) => {

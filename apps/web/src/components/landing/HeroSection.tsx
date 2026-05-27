@@ -4,10 +4,11 @@ import Link from 'next/link'
 
 import { ROUTES } from '@/config/routes'
 import { useTranslation } from '@/i18n/useTranslation'
+import { useAuthStore } from '@/store/auth.store'
 
 export function HeroSection() {
   const { t } = useTranslation()
-  const isAuthenticated = false
+  const isAuthenticated = useAuthStore((s) => s.isAuthenticated)
 
   return (
     <section className="relative overflow-hidden bg-gradient-to-br from-indigo-50 via-white to-amber-50 px-4 py-20 sm:px-6 lg:py-28">

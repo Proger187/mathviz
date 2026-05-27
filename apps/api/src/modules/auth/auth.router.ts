@@ -1,18 +1,13 @@
 import { Router } from 'express'
 
-import { RegisterSchema, LoginSchema, RefreshTokenSchema } from '@mathviz/shared'
+import { RegisterSchema, LoginSchema } from '@mathviz/shared'
 
 import { AppError } from '../../lib/AppError'
 import { authenticate } from '../../middleware/authenticate'
 import { authRateLimiter } from '../../middleware/rateLimiter'
 import { validate } from '../../middleware/validate'
 
-import {
-  registerUser,
-  loginUser,
-  refreshTokens,
-  logoutUser,
-} from './auth.service'
+import { registerUser, loginUser, refreshTokens, logoutUser } from './auth.service'
 
 const COOKIE_NAME = 'refreshToken'
 
@@ -45,7 +40,7 @@ authRouter.post('/login', authRateLimiter, validate(LoginSchema), async (req, re
   }
 })
 
-authRouter.post('/refresh', validate(RefreshTokenSchema), async (req, res, next) => {
+authRouter.post('/refresh', async (req, res, next) => {
   try {
     // Accept token from cookie (preferred) or body
     const token: string | undefined =
@@ -64,8 +59,9 @@ authRouter.post('/refresh', validate(RefreshTokenSchema), async (req, res, next)
 
 authRouter.post('/logout', authenticate, async (req, res, next) => {
   try {
-    const token: string | undefined =
-      (req.cookies as Record<string, string | undefined>)[COOKIE_NAME]
+    const token: string | undefined = (req.cookies as Record<string, string | undefined>)[
+      COOKIE_NAME
+    ]
 
     if (token) await logoutUser(token)
 

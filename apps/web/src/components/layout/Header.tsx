@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect, useRef, useState } from 'react'
+import Link from 'next/link'
 
 import { MODES } from '@mathviz/shared'
 
@@ -42,11 +43,20 @@ export function Header() {
 
     function trapTab(e: KeyboardEvent) {
       if (e.key !== 'Tab') return
-      if (focusable.length === 0) { e.preventDefault(); return }
+      if (focusable.length === 0) {
+        e.preventDefault()
+        return
+      }
       if (e.shiftKey) {
-        if (document.activeElement === first) { e.preventDefault(); last?.focus() }
+        if (document.activeElement === first) {
+          e.preventDefault()
+          last?.focus()
+        }
       } else {
-        if (document.activeElement === last) { e.preventDefault(); first?.focus() }
+        if (document.activeElement === last) {
+          e.preventDefault()
+          first?.focus()
+        }
       }
     }
     el.addEventListener('keydown', trapTab)
@@ -56,7 +66,7 @@ export function Header() {
   const navLinks = (
     <>
       {Object.values(MODES).map((mode) => (
-        <a
+        <Link
           key={mode.id}
           href={ROUTES.CALCULATOR(mode.id)}
           className="flex items-center gap-1.5 hover:text-gray-900"
@@ -64,22 +74,22 @@ export function Header() {
         >
           <span>{mode.icon}</span>
           <span className="capitalize">{mode.id}</span>
-        </a>
+        </Link>
       ))}
-      <a
+      <Link
         href={ROUTES.LEADERBOARD}
         className="hover:text-gray-900"
         onClick={() => setMenuOpen(false)}
       >
         {t('nav.leaderboard')}
-      </a>
-      <a
+      </Link>
+      <Link
         href={ROUTES.DASHBOARD}
         className="hover:text-gray-900"
         onClick={() => setMenuOpen(false)}
       >
         {t('nav.dashboard')}
-      </a>
+      </Link>
     </>
   )
 
@@ -87,13 +97,13 @@ export function Header() {
     <header className="sticky top-0 z-40 border-b border-gray-100 bg-white/90 backdrop-blur-sm">
       <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-3">
         {/* Logo */}
-        <a href={ROUTES.HOME} className="text-lg font-bold text-indigo-600">
+        <Link href={ROUTES.HOME} className="text-lg font-bold text-indigo-600">
           {t('common.appName')}
-        </a>
+        </Link>
 
         {/* Desktop nav */}
         <nav
-          aria-label={t('nav.openMenu')}
+          aria-label={t('nav.mainNavigation')}
           className="hidden items-center gap-5 text-sm font-medium text-gray-600 md:flex"
         >
           {navLinks}
@@ -102,18 +112,18 @@ export function Header() {
         {/* Right side */}
         <div className="flex items-center gap-3">
           <LanguageSwitcher />
-          <a
+          <Link
             href={ROUTES.LOGIN}
             className="hidden rounded-md border border-gray-200 px-3 py-1.5 text-sm font-medium text-gray-700 hover:bg-gray-50 md:block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500"
           >
             {t('nav.login')}
-          </a>
-          <a
+          </Link>
+          <Link
             href={ROUTES.REGISTER}
             className="hidden rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold text-white hover:bg-indigo-700 md:block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500"
           >
             {t('nav.register')}
-          </a>
+          </Link>
 
           {/* Hamburger button — visible on mobile only */}
           <button
@@ -127,12 +137,22 @@ export function Header() {
             {menuOpen ? (
               // X icon
               <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
-                <path d="M2 2L16 16M16 2L2 16" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+                <path
+                  d="M2 2L16 16M16 2L2 16"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                />
               </svg>
             ) : (
               // Hamburger icon
               <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
-                <path d="M2 4h14M2 9h14M2 14h14" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+                <path
+                  d="M2 4h14M2 9h14M2 14h14"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                />
               </svg>
             )}
           </button>
@@ -154,20 +174,20 @@ export function Header() {
           >
             {navLinks}
             <div className="flex gap-3 border-t border-gray-100 pt-4">
-              <a
+              <Link
                 href={ROUTES.LOGIN}
                 className="flex-1 rounded-md border border-gray-200 py-2 text-center text-sm font-medium text-gray-700 hover:bg-gray-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500"
                 onClick={() => setMenuOpen(false)}
               >
                 {t('nav.login')}
-              </a>
-              <a
+              </Link>
+              <Link
                 href={ROUTES.REGISTER}
                 className="flex-1 rounded-md bg-indigo-600 py-2 text-center text-sm font-semibold text-white hover:bg-indigo-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500"
                 onClick={() => setMenuOpen(false)}
               >
                 {t('nav.register')}
-              </a>
+              </Link>
             </div>
           </nav>
         </div>

@@ -16,6 +16,7 @@
     "learn": "Learn",
     "quiz": "Quiz",
     "dashboard": "My progress",
+    "calculators": "Calculators",
     "leaderboard": "Leaderboard",
     "login": "Log in",
     "register": "Sign up free",
@@ -38,8 +39,8 @@
     "myAccount": "Hello, {username}",
     "languages": {
       "en": "English",
-      "ru": "Russian",
-      "kg": "Kyrgyz"
+      "ru": "Русский",
+      "kg": "Кыргызча"
     }
   },
   "landing": {
@@ -233,6 +234,7 @@
     "AUTH_TOKEN_INVALID": "Invalid session — please log in again",
     "QUIZ_SESSION_NOT_FOUND": "Quiz session not found",
     "QUIZ_ALREADY_COMPLETED": "This quiz session is already complete",
+    "RATE_LIMIT_EXCEEDED": "Too many attempts — please wait a few minutes and try again",
     "VALIDATION_ERROR": "Please check your input and try again",
     "NOT_FOUND": "Page not found",
     "INTERNAL_ERROR": "An unexpected error occurred — please try again"

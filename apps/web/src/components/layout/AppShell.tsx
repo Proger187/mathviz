@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useState, type ReactNode, useCallback } from 'react'
+import { useEffect, useState, type ReactNode } from 'react'
 import { usePathname } from 'next/navigation'
 
 import { useTranslation } from '@/i18n/useTranslation'
@@ -9,6 +9,7 @@ import { cn } from '@/lib/cn'
 import { NavIcon } from '@/components/icons/NavIcons'
 
 import { Footer } from './Footer'
+import { LanguageSwitcher } from './LanguageSwitcher'
 import { MobileBottomNav } from './MobileBottomNav'
 import { Sidebar } from './Sidebar'
 
@@ -64,7 +65,7 @@ export function AppShell({ children, variant = 'default' }: AppShellProps) {
             </div>
             {variant === 'minimal' && (
               <div className="ml-auto flex items-center gap-3">
-                <LanguageSwitcherCompact />
+                <LanguageSwitcher variant="compact" />
               </div>
             )}
           </div>
@@ -81,38 +82,6 @@ export function AppShell({ children, variant = 'default' }: AppShellProps) {
       </div>
 
       {showSidebar && <MobileBottomNav onOpenMenu={() => setSidebarOpen(true)} />}
-    </div>
-  )
-}
-
-function LanguageSwitcherCompact() {
-  const { locale, setLocale, t } = useTranslation()
-  const locales = [
-    { code: 'en' as const, labelKey: 'nav.languages.en' },
-    { code: 'ru' as const, labelKey: 'nav.languages.ru' },
-    { code: 'kg' as const, labelKey: 'nav.languages.kg' },
-  ]
-
-  return (
-    <div
-      className="flex rounded-lg border border-slate-200 bg-white text-xs"
-      role="group"
-      aria-label={t('nav.language')}
-    >
-      {locales.map(({ code, labelKey }) => (
-        <button
-          key={code}
-          type="button"
-          onClick={() => setLocale(code)}
-          aria-pressed={locale === code}
-          className={cn(
-            'px-2.5 py-1.5 font-medium first:rounded-l-lg last:rounded-r-lg',
-            locale === code ? 'bg-indigo-600 text-white' : 'text-slate-600 hover:bg-slate-50',
-          )}
-        >
-          {t(labelKey)}
-        </button>
-      ))}
     </div>
   )
 }

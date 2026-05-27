@@ -16,6 +16,7 @@
     "learn": "Үйрөнүү",
     "quiz": "Викториналар",
     "dashboard": "Менин прогрессим",
+    "calculators": "Калькуляторлор",
     "leaderboard": "Рейтинг",
     "login": "Кирүү",
     "register": "Катталуу",
@@ -178,11 +179,11 @@
     "hideBreakdown": "Бөлүнүштү жашыруу",
     "distributiveProperty": "Бөлүнүштүн касиети",
     "fractions": {
-      "first": "Бirinchi bölchök",
-      "second": "Ekinchi bölchök",
-      "add": "Koshuu",
-      "subtract": "Aluu",
-      "enterValues": "Eki bölchök kirgizip, amaldy tanda",
+      "first": "Биринчи бөлчөк",
+      "second": "Экинчи бөлчөк",
+      "add": "Кошуу",
+      "subtract": "Алуу",
+      "enterValues": "Эки бөлчөк киргизип, амалды тандаңыз",
       "visual": "Тегерек бөлүктөрдү көрсөтөт: белги — канча бөлүк, саны — канчасы боёлгон"
     }
   },
@@ -233,6 +234,7 @@
     "AUTH_TOKEN_INVALID": "Жараксыз сессия — кайра кирүү",
     "QUIZ_SESSION_NOT_FOUND": "Викторина сессиясы табылган жок",
     "QUIZ_ALREADY_COMPLETED": "Бул викторина сессиясы буга чейин аяктаган",
+    "RATE_LIMIT_EXCEEDED": "Өтө көп аракет — бир нече мүнөт күтүп, кайра аракет кылыңыз",
     "VALIDATION_ERROR": "Маалыматыңызды текшерип, кайра аракет кылыңыз",
     "NOT_FOUND": "Баракча табылган жок",
     "INTERNAL_ERROR": "Күтүлбөгөн ката чыкты — кайра аракет кылыңыз"

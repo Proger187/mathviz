@@ -1,6 +1,6 @@
 import type { ApiErrorCode } from '@mathviz/shared'
 
-import { getAccessToken } from './token'
+import { getAccessToken, setAccessToken } from './token'
 
 const API_BASE = process.env.NEXT_PUBLIC_API_URL ?? 'http://localhost:8080'
 
@@ -21,7 +21,21 @@ export class ApiResponseError extends Error {
   }
 }
 
-export async function apiFetch<T>(path: string, options: RequestInit = {}): Promise<T> {
+let refreshPromise: Promise<string> | null = null
+
+async function refreshAccessToken(): Promise<string> {
+  const res = await fetch(`${API_BASE}/api/v1/auth/refresh`, {
+    method: 'POST',
+    credentials: 'include',
+    headers: { 'Content-Type': 'application/json' },
+  })
+  if (!res.ok) throw new Error('Refresh failed')
+  const body = (await res.json()) as { accessToken: string }
+  setAccessToken(body.accessToken)
+  return body.accessToken
+}
+
+async function doFetch(path: string, options: RequestInit): Promise<Response> {
   const token = getAccessToken()
 
   const headers: Record<string, string> = {
@@ -33,11 +47,29 @@ export async function apiFetch<T>(path: string, options: RequestInit = {}): Prom
     headers['Authorization'] = `Bearer ${token}`
   }
 
-  const response = await fetch(`${API_BASE}${path}`, {
+  return fetch(`${API_BASE}${path}`, {
     ...options,
-    credentials: 'include', // send HttpOnly refresh-token cookie
+    credentials: 'include',
     headers,
   })
+}
+
+export async function apiFetch<T>(path: string, options: RequestInit = {}): Promise<T> {
+  let response = await doFetch(path, options)
+
+  if (response.status === 401 && getAccessToken() && !path.includes('/auth/refresh')) {
+    try {
+      if (!refreshPromise) {
+        refreshPromise = refreshAccessToken()
+      }
+      await refreshPromise
+      response = await doFetch(path, options)
+    } catch {
+      // refresh failed — fall through to throw the original 401
+    } finally {
+      refreshPromise = null
+    }
+  }
 
   if (!response.ok) {
     let code: ApiErrorCode = 'INTERNAL_ERROR'

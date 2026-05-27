@@ -3,6 +3,7 @@
 import { usePathname } from 'next/navigation'
 import type { ReactNode } from 'react'
 
+import { useAuthInit } from '@/hooks/useAuthInit'
 import { useAuthStore } from '@/store/auth.store'
 
 import { AppShell } from './AppShell'
@@ -30,6 +31,9 @@ const MINIMAL_PATHS = ['/login', '/register']
 export function AppShellProvider({ children }: { children: ReactNode }) {
   const pathname = usePathname()
   const isAuthenticated = useAuthStore((s) => s.isAuthenticated)
+
+  // Restore session from HttpOnly refresh-token cookie on every cold load
+  useAuthInit()
 
   // Landing page (and any future full-custom pages) — render bare
   if (RAW_PATHS.includes(pathname)) {

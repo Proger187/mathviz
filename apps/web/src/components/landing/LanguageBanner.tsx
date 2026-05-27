@@ -33,9 +33,9 @@ export function LanguageBanner() {
                 <h3 className="text-xl font-bold text-white">{lang.name}</h3>
                 <p className="mt-1 text-sm text-indigo-100">{lang.description}</p>
               </div>
-              <button className="rounded-lg bg-white px-6 py-2 font-semibold text-indigo-600 shadow-lg transition group-hover:shadow-xl">
+              <span className="rounded-lg bg-white px-6 py-2 font-semibold text-indigo-600 shadow-lg transition group-hover:shadow-xl">
                 {t('landing.languageSwitchButton')}
-              </button>
+              </span>
             </button>
           ))}
         </div>
