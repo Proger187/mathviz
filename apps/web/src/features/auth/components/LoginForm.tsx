@@ -37,6 +37,9 @@ export function LoginForm() {
         body: JSON.stringify({ email, password }),
       })
       signIn(data.user, data.accessToken)
+      // Keep isLoading = true intentionally: the button stays in its loading state
+      // while Next.js navigates to the dashboard. The component will unmount during
+      // navigation, so there's no need to ever reset it on the success path.
       router.push(ROUTES.DASHBOARD)
     } catch (err) {
       if (err instanceof ApiResponseError) {
@@ -44,7 +47,7 @@ export function LoginForm() {
       } else {
         setError(t('errors.INTERNAL_ERROR'))
       }
-    } finally {
+      // Only stop loading on failure so the user can retry
       setIsLoading(false)
     }
   }

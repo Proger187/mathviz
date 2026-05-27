@@ -1,6 +1,5 @@
 import type { Metadata } from 'next'
 
-import { AppShell } from '@/components/layout/AppShell'
 import { ProtectedContentGuard } from './ProtectedLayoutClient'
 
 export const metadata: Metadata = {
@@ -9,9 +8,7 @@ export const metadata: Metadata = {
 }
 
 export default function ProtectedLayout({ children }: { children: React.ReactNode }) {
-  return (
-    <AppShell>
-      <ProtectedContentGuard>{children}</ProtectedContentGuard>
-    </AppShell>
-  )
+  // AppShell lives at the root level (providers.tsx) and persists across navigation.
+  // This layout only adds the auth guard — it does not create its own shell.
+  return <ProtectedContentGuard>{children}</ProtectedContentGuard>
 }

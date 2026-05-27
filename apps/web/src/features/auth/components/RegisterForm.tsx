@@ -48,6 +48,8 @@ export function RegisterForm() {
         body: JSON.stringify({ email, password }),
       })
       signIn(loginData.user, loginData.accessToken)
+      // Keep isLoading = true: button stays spinning during navigation.
+      // Component unmounts when navigation completes, so no reset needed.
       router.push(ROUTES.DASHBOARD)
     } catch (err) {
       if (err instanceof ApiResponseError) {
@@ -55,7 +57,7 @@ export function RegisterForm() {
       } else {
         setError(t('errors.INTERNAL_ERROR'))
       }
-    } finally {
+      // Only stop loading on failure
       setIsLoading(false)
     }
   }
