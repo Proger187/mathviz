@@ -1,20 +1,25 @@
+'use client'
+
+import { useAuthStore } from '@/store/auth.store'
 import Link from 'next/link'
 import { MODES } from '@mathviz/shared'
 import type { ModeId } from '@mathviz/shared'
 import { ROUTES } from '@/config/routes'
-import en from '@/i18n/en.json'
-import { getTranslation } from '@/i18n/getTranslation'
-
-function t(key: string): string {
-  return getTranslation(en, en, key)
-}
+import { useTranslation } from '@/i18n/useTranslation'
 
 interface ModeSelectorProps {
   activeModeId: ModeId
 }
 
 export function ModeSelector({ activeModeId }: ModeSelectorProps) {
+  const { t } = useTranslation()
+  const isAuthenticated = useAuthStore((s) => s.isAuthenticated)
   const modes = Object.entries(MODES) as Array<[ModeId, { icon: string }]>
+
+  // Hide mode selector for authenticated users (they use sidebar Topics instead)
+  if (isAuthenticated) {
+    return null
+  }
 
   return (
     <div className="mb-8">

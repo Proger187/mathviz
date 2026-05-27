@@ -2,22 +2,27 @@
 
 import { useEffect, useState } from 'react'
 import { AppShell } from '@/components/layout/AppShell'
+import { Spinner } from '@/components/ui/Spinner'
 import { useAuthStore } from '@/store/auth.store'
 
 export default function PublicLayout({ children }: { children: React.ReactNode }) {
-  const [isLoading, setIsLoading] = useState(true)
+  const [mounted, setMounted] = useState(false)
   const isAuthenticated = useAuthStore((s) => s.isAuthenticated)
   const isAuthLoading = useAuthStore((s) => s.isLoading)
 
   useEffect(() => {
-    setIsLoading(isAuthLoading)
-  }, [isAuthLoading])
+    setMounted(true)
+  }, [])
 
-  // While checking auth state, show minimal layout
-  if (isLoading) {
-    return <AppShell variant="minimal">{children}</AppShell>
+  // During auth check, show minimal layout with spinner
+  if (!mounted || isAuthLoading) {
+    return (
+      <AppShell variant="minimal">
+        <Spinner className="mx-auto my-24" />
+      </AppShell>
+    )
   }
 
-  // Guests see minimal layout (no sidebar), authenticated users see full sidebar
+  // Authenticated users see full sidebar, guests see minimal layout
   return <AppShell variant={isAuthenticated ? 'default' : 'minimal'}>{children}</AppShell>
 }

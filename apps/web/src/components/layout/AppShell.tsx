@@ -1,6 +1,7 @@
 'use client'
 
-import { useEffect, useState, type ReactNode } from 'react'
+import { useEffect, useState, type ReactNode, useCallback } from 'react'
+import { usePathname } from 'next/navigation'
 
 import { useTranslation } from '@/i18n/useTranslation'
 import { cn } from '@/lib/cn'
@@ -20,6 +21,7 @@ interface AppShellProps {
 
 export function AppShell({ children, variant = 'default' }: AppShellProps) {
   const { t } = useTranslation()
+  const pathname = usePathname()
   const [sidebarOpen, setSidebarOpen] = useState(false)
   const showSidebar = variant === 'default'
 
@@ -32,9 +34,10 @@ export function AppShell({ children, variant = 'default' }: AppShellProps) {
     }
   }, [sidebarOpen])
 
+  // Close sidebar on route change (mobile UX)
   useEffect(() => {
     setSidebarOpen(false)
-  }, [children])
+  }, [pathname])
 
   return (
     <div className="min-h-screen bg-slate-50">
