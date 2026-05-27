@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 
-import { ProtectedLayoutClient } from './ProtectedLayoutClient'
+import { AppShell } from '@/components/layout/AppShell'
+import { ProtectedContentGuard } from './ProtectedLayoutClient'
 
 export const metadata: Metadata = {
   title: 'Dashboard',
@@ -8,5 +9,9 @@ export const metadata: Metadata = {
 }
 
 export default function ProtectedLayout({ children }: { children: React.ReactNode }) {
-  return <ProtectedLayoutClient>{children}</ProtectedLayoutClient>
+  return (
+    <AppShell>
+      <ProtectedContentGuard>{children}</ProtectedContentGuard>
+    </AppShell>
+  )
 }
