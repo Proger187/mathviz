@@ -53,6 +53,7 @@ export default function NegativeNumberCalculator({
   const [errResult, setErrResult] = useState(false)
   const [shakeAnim, setShakeAnim] = useState<'idle' | 'shake'>('idle')
   const [showAdvanced, setShowAdvanced] = useState(showAdvancedMode)
+  const [hasCalculated, setHasCalculated] = useState(false)
 
   useEffect(() => {
     if (np) {
@@ -60,6 +61,7 @@ export default function NegativeNumberCalculator({
       setB(np.b)
       setOperation(np.operation)
       setShowResult(!hideResult)
+      setHasCalculated(false)
     }
   }, [np, hideResult])
 
@@ -89,6 +91,7 @@ export default function NegativeNumberCalculator({
     setErrB(false)
     setErrResult(false)
     reset()
+    setHasCalculated(true)
     setShowResult(!hideResult)
   }
 
@@ -106,44 +109,51 @@ export default function NegativeNumberCalculator({
         <motion.div
           variants={SHAKE_VARIANTS}
           animate={reducedMotion ? 'idle' : shakeAnim}
-          className="flex flex-wrap items-end gap-3"
+          className="rounded-2xl border border-slate-200/80 bg-white p-4 shadow-card sm:p-5"
         >
-          <Input
-            id="neg-a"
-            label={t('calculator.firstNumber')}
-            type="number"
-            value={a}
-            onChange={(e) => {
-              setA(Number(e.target.value))
-              setErrA(false)
-            }}
-            {...(errA ? { error: t('validation.numberOutOfRange', { min: -50, max: 50 }) } : {})}
-            className="w-28"
-          />
-          <div className="flex flex-col gap-1">
-            <span className="text-sm font-medium text-gray-700">{t('calculator.operation')}</span>
-            <select
-              value={operation}
-              onChange={(e) => setOperation(e.target.value as Operation)}
-              className="rounded-lg border border-gray-300 px-3 py-2 text-sm text-gray-900"
-            >
-              <option value="+">+</option>
-              <option value="-">−</option>
-            </select>
+          <div className="flex flex-wrap items-end gap-3">
+            <Input
+              id="neg-a"
+              label={t('calculator.firstNumber')}
+              type="number"
+              value={a}
+              onChange={(e) => {
+                setA(Number(e.target.value))
+                setErrA(false)
+                setHasCalculated(false)
+              }}
+              {...(errA ? { error: t('validation.numberOutOfRange', { min: -50, max: 50 }) } : {})}
+              className="w-28"
+            />
+            <div className="flex flex-col gap-1">
+              <span className="text-sm font-medium text-gray-700">{t('calculator.operation')}</span>
+              <select
+                value={operation}
+                onChange={(e) => {
+                  setOperation(e.target.value as Operation)
+                  setHasCalculated(false)
+                }}
+                className="rounded-lg border border-gray-300 px-3 py-2 text-sm text-gray-900"
+              >
+                <option value="+">+</option>
+                <option value="-">−</option>
+              </select>
+            </div>
+            <Input
+              id="neg-b"
+              label={t('calculator.secondNumber')}
+              type="number"
+              value={b}
+              onChange={(e) => {
+                setB(Number(e.target.value))
+                setErrB(false)
+                setHasCalculated(false)
+              }}
+              {...(errB ? { error: t('validation.numberOutOfRange', { min: -50, max: 50 }) } : {})}
+              className="w-28"
+            />
+            <Button onClick={handleCalculate}>{t('calculator.calculate')}</Button>
           </div>
-          <Input
-            id="neg-b"
-            label={t('calculator.secondNumber')}
-            type="number"
-            value={b}
-            onChange={(e) => {
-              setB(Number(e.target.value))
-              setErrB(false)
-            }}
-            {...(errB ? { error: t('validation.numberOutOfRange', { min: -50, max: 50 }) } : {})}
-            className="w-28"
-          />
-          <Button onClick={handleCalculate}>{t('calculator.calculate')}</Button>
         </motion.div>
       )}
 
@@ -184,7 +194,7 @@ export default function NegativeNumberCalculator({
       )}
 
       {/* Number line */}
-      <div className="overflow-x-auto rounded-xl bg-white p-4 shadow-sm ring-1 ring-gray-100">
+      <div className="overflow-x-auto rounded-2xl border border-slate-200/80 bg-white p-4 shadow-card sm:p-5">
         <NumberLine
           a={a}
           b={b}
@@ -193,6 +203,15 @@ export default function NegativeNumberCalculator({
           showEndDot={showEndDot}
         />
       </div>
+
+      {!isQuizMode && hasCalculated && (
+        <div className="rounded-xl bg-indigo-50/70 px-4 py-3 text-center">
+          <p className="text-sm text-indigo-700">{t('calculator.resultLabel')}</p>
+          <p className="text-2xl font-bold text-indigo-900">
+            {a} {operation === '-' ? '−' : '+'} {b} = {result}
+          </p>
+        </div>
+      )}
 
       {/* Step narration */}
       <p
@@ -217,7 +236,14 @@ export default function NegativeNumberCalculator({
         <Button variant="secondary" size="sm" onClick={goForward} disabled={!canGoForward}>
           {t('calculator.nextStep')}
         </Button>
-        <Button variant="ghost" size="sm" onClick={reset}>
+        <Button
+          variant="ghost"
+          size="sm"
+          onClick={() => {
+            reset()
+            setHasCalculated(false)
+          }}
+        >
           {t('calculator.resetSteps')}
         </Button>
       </nav>

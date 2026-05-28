@@ -46,6 +46,7 @@ export default function FractionCalculator({
   const [errB, setErrB] = useState(false)
   const [errC, setErrC] = useState(false)
   const [errD, setErrD] = useState(false)
+  const [hasCalculated, setHasCalculated] = useState(false)
 
   useEffect(() => {
     if (fp) {
@@ -55,6 +56,7 @@ export default function FractionCalculator({
       setD(fp.denominatorB)
       setOperation(fp.operation)
       setShowResult(!hideResult)
+      setHasCalculated(false)
     }
   }, [fp, hideResult])
 
@@ -99,6 +101,7 @@ export default function FractionCalculator({
     setErrD(bD)
     if (bA || bB || bC || bD) return
     reset()
+    setHasCalculated(true)
     if (onAnswer) {
       onAnswer(`${result.numerator}/${result.denominator}`)
     }
@@ -138,7 +141,10 @@ export default function FractionCalculator({
                 max={20}
                 value={a}
                 readOnly={isQuizMode}
-                onChange={(e) => setA(Number(e.target.value))}
+                onChange={(e) => {
+                  setA(Number(e.target.value))
+                  setHasCalculated(false)
+                }}
                 className="w-16"
                 {...(errA ? { error: rangeErr } : {})}
               />
@@ -151,7 +157,10 @@ export default function FractionCalculator({
                 max={20}
                 value={b}
                 readOnly={isQuizMode}
-                onChange={(e) => setB(Number(e.target.value))}
+                onChange={(e) => {
+                  setB(Number(e.target.value))
+                  setHasCalculated(false)
+                }}
                 className="w-16"
                 {...(errB ? { error: divZeroErr } : {})}
               />
@@ -168,7 +177,10 @@ export default function FractionCalculator({
                   key={op}
                   type="button"
                   onClick={() => {
-                    if (!isQuizMode) setOperation(op)
+                    if (!isQuizMode) {
+                      setOperation(op)
+                      setHasCalculated(false)
+                    }
                   }}
                   aria-pressed={operation === op}
                   aria-label={
@@ -201,7 +213,10 @@ export default function FractionCalculator({
                 max={20}
                 value={c}
                 readOnly={isQuizMode}
-                onChange={(e) => setC(Number(e.target.value))}
+                onChange={(e) => {
+                  setC(Number(e.target.value))
+                  setHasCalculated(false)
+                }}
                 className="w-16"
                 {...(errC ? { error: rangeErr } : {})}
               />
@@ -214,7 +229,10 @@ export default function FractionCalculator({
                 max={20}
                 value={d}
                 readOnly={isQuizMode}
-                onChange={(e) => setD(Number(e.target.value))}
+                onChange={(e) => {
+                  setD(Number(e.target.value))
+                  setHasCalculated(false)
+                }}
                 className="w-16"
                 {...(errD ? { error: divZeroErr } : {})}
               />
@@ -236,7 +254,7 @@ export default function FractionCalculator({
         <FractionDisplay numerator={a} denominator={b} size="lg" />
         <span className="text-2xl font-bold text-slate-500">{operation}</span>
         <FractionDisplay numerator={c} denominator={d} size="lg" />
-        {currentStep >= 4 && showResult && (
+        {(currentStep >= 4 || hasCalculated) && showResult && (
           <>
             <span className="text-2xl font-bold text-slate-500">=</span>
             <FractionDisplay
@@ -281,7 +299,7 @@ export default function FractionCalculator({
           </div>
 
           <AnimatePresence mode="wait">
-            {currentStep >= 4 && (
+            {(currentStep >= 4 || hasCalculated) && (
               <motion.div
                 key="result"
                 {...fade}
@@ -381,6 +399,16 @@ export default function FractionCalculator({
             className="rounded-lg border border-slate-200 bg-white px-4 py-2 text-sm font-medium text-slate-700 hover:bg-slate-50 disabled:opacity-40"
           >
             {t('common.next')}
+          </button>
+          <button
+            type="button"
+            onClick={() => {
+              reset()
+              setHasCalculated(false)
+            }}
+            className="rounded-lg border border-slate-200 bg-white px-4 py-2 text-sm font-medium text-slate-700 hover:bg-slate-50"
+          >
+            {t('calculator.resetSteps')}
           </button>
         </div>
       </section>

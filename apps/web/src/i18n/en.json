@@ -165,6 +165,7 @@
     "numerator": "Numerator",
     "denominator": "Denominator",
     "calculate": "Calculate",
+    "resultLabel": "Result",
     "stepNavLabel": "Step navigation",
     "operation": "Operation",
     "firstNumber": "First number",
@@ -186,6 +187,21 @@
       "enterValues": "Enter two fractions and choose an operation",
       "visual": "Each circle shows shaded parts — the denominator is how many equal parts, the numerator is how many are shaded. If a fraction is greater than 1, we show whole circles plus the remainder.",
       "mixedResult": "{whole} wholes and {n}/{d}"
+    },
+    "multiplication": {
+      "enterValues": "Choose how many groups and how many items in each group",
+      "kidTitle": "Kid-friendly explanation",
+      "kidRows": "1) Make {rows} groups with {cols} items in each group.",
+      "kidProgress": "2) Right now, {filled} out of {total} items are shown.",
+      "kidResult": "3) Total items: {rows} × {cols} = {total}.",
+      "groupsTitle": "Visual idea: {rows} groups of {cols} items",
+      "groupLabel": "Group {index}",
+      "previewLimit": "For readability, part of the model is hidden: extra groups {hiddenGroups}, extra items per group {hiddenItems}.",
+      "repeatTitle": "The same as addition",
+      "repeatHint": "Take {items}, {groups} times: you get {total}.",
+      "ladderTitle": "Count by groups (step by step)",
+      "ladderRow": "{groups} group(s): {groups} × {items} = {subtotal}",
+      "ladderLimit": "More groups not shown: {hidden}"
     }
   },
   "modes": {
@@ -210,11 +226,11 @@
     },
     "multiplication": {
       "label": "Area Grid",
-      "shortHint": "Multiply by filling a grid",
-      "description": "See multiplication as filling a rectangular area",
-      "step0": "Building a {a} by {b} grid",
-      "step1": "Filling row by row — {filled} of {total} squares",
-      "step2": "Grid complete: {a} × {b} = {result}"
+      "shortHint": "Multiply with equal groups",
+      "description": "See multiplication as repeated equal groups of items",
+      "step0": "Create {a} groups of {b} items.",
+      "step1": "Add groups one by one — now {filled} of {total} items are shown.",
+      "step2": "All groups are ready: {a} × {b} = {result}."
     },
     "division": {
       "label": "Fair Share",

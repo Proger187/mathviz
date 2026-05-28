@@ -46,12 +46,14 @@ export default function DivisionCalculator({
   const [errTotal, setErrTotal] = useState(false)
   const [errGroups, setErrGroups] = useState(false)
   const [shakeAnim, setShakeAnim] = useState<'idle' | 'shake'>('idle')
+  const [hasCalculated, setHasCalculated] = useState(false)
 
   useEffect(() => {
     if (dp) {
       setTotal(dp.dividend)
       setGroups(dp.divisor)
       setShowResult(!hideResult)
+      setHasCalculated(false)
     }
   }, [dp, hideResult])
 
@@ -78,6 +80,7 @@ export default function DivisionCalculator({
       return
     }
     reset()
+    setHasCalculated(true)
     setShowResult(!hideResult)
   }
 
@@ -105,6 +108,7 @@ export default function DivisionCalculator({
             onChange={(e) => {
               setTotal(Number(e.target.value))
               setErrTotal(false)
+              setHasCalculated(false)
             }}
             {...(errTotal ? { error: t('validation.numberOutOfRange', { min: 1, max: 100 }) } : {})}
             className="w-28"
@@ -122,6 +126,7 @@ export default function DivisionCalculator({
                 const v = Number(e.target.value)
                 setGroups(v)
                 setErrGroups(false)
+                setHasCalculated(false)
               }}
               {...(errGroups
                 ? {
@@ -178,13 +183,20 @@ export default function DivisionCalculator({
         <Button variant="secondary" size="sm" onClick={goForward} disabled={!canGoForward}>
           {t('calculator.nextStep')}
         </Button>
-        <Button variant="ghost" size="sm" onClick={reset}>
+        <Button
+          variant="ghost"
+          size="sm"
+          onClick={() => {
+            reset()
+            setHasCalculated(false)
+          }}
+        >
           {t('calculator.resetSteps')}
         </Button>
       </nav>
 
-      {/* Answer panel — visible at step 3 */}
-      {currentStep >= 3 && (
+      {/* Answer panel — visible after calculate or at final step */}
+      {(currentStep >= 3 || hasCalculated) && (
         <div className="rounded-lg bg-green-50 px-4 py-3 text-center">
           <p className="text-xl font-bold text-green-800">
             {total} ÷ {groups} = {dist.itemsPerGroup}
