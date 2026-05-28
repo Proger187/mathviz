@@ -184,7 +184,8 @@
       "add": "Add",
       "subtract": "Subtract",
       "enterValues": "Enter two fractions and choose an operation",
-      "visual": "Each circle shows shaded parts — the denominator is how many equal parts, the numerator is how many are shaded"
+      "visual": "Each circle shows shaded parts — the denominator is how many equal parts, the numerator is how many are shaded. If a fraction is greater than 1, we show whole circles plus the remainder.",
+      "mixedResult": "{whole} wholes and {n}/{d}"
     }
   },
   "modes": {

@@ -72,8 +72,8 @@ export default function FractionCalculator({
   const dispNumA = currentStep >= 2 ? eqA.numerator : a
   const dispNumB = currentStep >= 2 ? eqC.numerator : c
 
-  const colorA = currentStep >= 2 ? '#6366f1' : '#818cf8'
-  const colorB = currentStep >= 2 ? '#8b5cf6' : '#a78bfa'
+  const colorA = currentStep >= 2 ? '#f46a6a' : '#f8a0a0'
+  const colorB = currentStep >= 2 ? '#9acd4a' : '#c3e488'
   const highlightLcd = currentStep === 1 || currentStep === 2
 
   const currentStepData = steps[currentStep]
@@ -177,7 +177,7 @@ export default function FractionCalculator({
                   className={cn(
                     'h-11 min-w-[3rem] rounded-xl font-mono text-xl font-bold transition-all',
                     operation === op
-                      ? 'bg-indigo-600 text-white shadow-md'
+                      ? 'bg-indigo-500 text-white shadow-sm'
                       : 'border border-slate-200 bg-slate-50 text-slate-700 hover:bg-slate-100',
                     isQuizMode && 'cursor-default',
                   )}
@@ -253,7 +253,7 @@ export default function FractionCalculator({
         className={cn(
           'rounded-2xl border bg-gradient-to-b from-slate-50 to-white p-5 transition-shadow sm:p-8',
           highlightLcd
-            ? 'border-indigo-300 shadow-md ring-2 ring-indigo-100'
+            ? 'border-indigo-200 shadow-sm ring-2 ring-indigo-50'
             : 'border-slate-200/80',
         )}
       >
@@ -291,18 +291,19 @@ export default function FractionCalculator({
                 {showResult ? (
                   <>
                     <PizzaSlice
-                      numerator={
-                        Math.abs(result.numerator) % result.denominator ||
-                        Math.abs(result.numerator)
-                      }
+                      numerator={Math.abs(result.numerator)}
                       denominator={result.denominator}
-                      color="#10b981"
+                      color="#5ec0ea"
                       label={`${result.numerator}/${result.denominator}`}
                     />
                     <p className="text-center text-lg font-bold text-slate-900" aria-live="polite">
                       {result.numerator}/{result.denominator}
                       {mixed !== null &&
-                        `  →  ${mixed.whole} ${mixed.numerator}/${mixed.denominator}`}
+                        `  →  ${t('calculator.fractions.mixedResult', {
+                          whole: mixed.whole,
+                          n: mixed.numerator,
+                          d: mixed.denominator,
+                        })}`}
                     </p>
                   </>
                 ) : (
@@ -348,12 +349,12 @@ export default function FractionCalculator({
         <motion.div
           key={currentStep}
           {...fade}
-          className="mx-auto mt-6 max-w-lg rounded-xl bg-indigo-50 px-4 py-3 text-center"
+          className="mx-auto mt-6 max-w-lg rounded-xl bg-indigo-50/60 px-4 py-3 text-center"
         >
           <p
             aria-live="polite"
             aria-atomic="true"
-            className="text-sm leading-relaxed text-indigo-900"
+            className="text-sm leading-relaxed text-indigo-800"
           >
             {narrative}
           </p>
